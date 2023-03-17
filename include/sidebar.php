@@ -9,27 +9,77 @@
 				<ul id="accordion-menu">
 					<li class="dropdown">
 						<a href="index.php" class="dropdown-toggle no-arrow">
-							<span class="fa fa-home"></span><span class="mtext">Ini Dashboard</span>
-						</a>
-					</li>
-					<li class="dropdown">
-						<a href="form-basic.php" class="dropdown-toggle no-arrow">
-							<span class="fa fa-pencil"></span><span class="mtext">Ini buat isi form</span>
+							<span class="fa fa-home"></span><span class="mtext">Dashboard</span>
 						</a>
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="fa fa-table"></span><span class="mtext">Ini tabel</span>
+							<span class="fa fa-table"></span><span class="mtext">Production</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="datatable.php">Tabel Asli</a></li>
-							<li><a href="datatable2.php">Tabel Gak Asli</a></li>
+							<li class="dropdown">
+								<a href="create-serial-number.php" class="dropdown-toggle no-arrow">
+									<span class="fa fa-barcode"></span><span class="mtext">Create Serial Number</span>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="batch-production-table.php" class="dropdown-toggle no-arrow">
+									<span class="fa fa-list"></span><span class="mtext">Batch Production</span>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="list-kategori-produk.php" class="dropdown-toggle no-arrow">
+									<span class="fa fa-th-list"></span><span class="mtext">List Product Category</span>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle no-arrow">
+									<span class="fa fa-list-ol"></span><span class="mtext">List Pemesanan Produk</span>
+								</a>
+							</li>
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a href="login.php" class="dropdown-toggle no-arrow">
-							<span class="fa"></span><span class="mtext">Login Page</span>
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="fa fa-user-circle-o"></span><span class="mtext">Akun</span>
 						</a>
+						<ul class="submenu">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle no-arrow">
+									<span class="fa fa-user-plus"></span><span class="mtext">Create New User</span>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle no-arrow">
+									<span class="fa fa-edit"></span><span class="mtext">Change Password</span>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle no-arrow">
+									<span class="fa fa-users"></span><span class="mtext">List User</span>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle no-arrow">
+									<span class="fa fa-group"></span><span class="mtext">List Usergroup</span>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="login.php" class="dropdown-toggle no-arrow">
+									<span class="fa fa-user-circle"></span><span class="mtext">Login Page</span>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle no-arrow">
+									<span class="fa fa-list-alt"></span><span class="mtext">Log</span>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle no-arrow">
+									<span class="fa fa-user-times"></span><span class="mtext">Log out</span>
+								</a>
+							</li>
+						</ul>
 					</li>
 
 				</ul>
