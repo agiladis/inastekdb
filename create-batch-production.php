@@ -13,13 +13,13 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Create Batch Production</h4>
+								<h4>Create New</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                     <li class="breadcrumb-item"><a href="batch-production-table.php">Batch Production</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Create Batch Production</li>
+									<li class="breadcrumb-item active" aria-current="page">Create New</li>
 								</ol>
 							</nav>
 						</div>

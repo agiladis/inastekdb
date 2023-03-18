@@ -21,7 +21,7 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">List Kategori Produk</li>
+									<li class="breadcrumb-item active" aria-current="page">List Pemesan Produk</li>
 								</ol>
 							</nav>
 						</div>
@@ -49,7 +49,7 @@
 					</div> -->
                     <div class="clearfix mb-20">
 						<div class="pull-left">
-							<a href="create-product-category.php" class="btn btn-success btn-lg" role="button">Create New</a>
+							<a href="create-pemesan-produk.php" class="btn btn-success btn-lg" role="button">Create New</a>
 						</div>
 					</div>
 					<div class="row">

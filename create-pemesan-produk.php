@@ -18,7 +18,7 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="list-kategori-produk.php">List Kategori Produk</a></li>
+                                    <li class="breadcrumb-item"><a href="list-pemesan-produk.php">List Pemesan Produk</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Create New</li>
 								</ol>
 							</nav>
@@ -61,7 +61,7 @@
 					</form>
 					<div class="clearfix">
 						<div class="pull-right">
-							<a href="list-kategori-produk.php" class="btn btn-primary btn-sm" role="button">Create</a>
+							<a href="list-pemesan-produk.php" class="btn btn-primary btn-sm" role="button">Create</a>
 						</div>
 					</div>
 				</div>	

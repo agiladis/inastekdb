@@ -16,12 +16,12 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>List Kategori Produk</h4>
+								<h4>Log</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">List Kategori Produk</li>
+									<li class="breadcrumb-item active" aria-current="page">Log</li>
 								</ol>
 							</nav>
 						</div>
@@ -41,31 +41,20 @@
 				</div>
 				<!-- Simple Datatable start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<!-- <div class="clearfix mb-20">
-						<div class="pull-left">
-							<h5 class="text-blue">Data Table Simple</h5>
-							<p class="font-14">you can find more options <a class="text-primary" href="https://datatables.net/" target="_blank">Click Here</a></p>
-						</div>
-					</div> -->
-                    <div class="clearfix mb-20">
-						<div class="pull-left">
-							<a href="create-product-category.php" class="btn btn-success btn-lg" role="button">Create New</a>
-						</div>
-					</div>
 					<div class="row">
 						<table class='data-table stripe hover nowrap'>
 						<thead>
 								<tr>
 									<th class="table-plus">No.</th>
-									<th>Code</th>
-									<th>Detail</th>
+									<th>Tanggal</th>
+									<th>Note</th>
                                     <th class="datatable-nosort"></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td class="table-plus">1</td>
-									<td>25</td>
+									<td>32-01-2023</td>
 									<td>-</td>
 									<td>
 										<div class="dropdown">
@@ -74,7 +63,7 @@
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">
 												<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
+												<a class="dropdown-item" href="reset-password.php"><i class="fa fa-pencil"></i> Change Password</a>
 												<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
 											</div>
 										</div>

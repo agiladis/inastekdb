@@ -29,11 +29,11 @@
 							</li>
 							<li class="dropdown">
 								<a href="list-kategori-produk.php" class="dropdown-toggle no-arrow">
-									<span class="fa fa-th-list"></span><span class="mtext">List Product Category</span>
+									<span class="fa fa-th-list"></span><span class="mtext">List Kategori Produk</span>
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle no-arrow">
+								<a href="list-pemesan-produk.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-list-ol"></span><span class="mtext">List Pemesanan Produk</span>
 								</a>
 							</li>
@@ -45,22 +45,22 @@
 						</a>
 						<ul class="submenu">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle no-arrow">
+								<a href="create-new-user.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-user-plus"></span><span class="mtext">Create New User</span>
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle no-arrow">
+								<a href="reset-password.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-edit"></span><span class="mtext">Change Password</span>
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle no-arrow">
+								<a href="list-user.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-users"></span><span class="mtext">List User</span>
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle no-arrow">
+								<a href="list-usergroup.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-group"></span><span class="mtext">List Usergroup</span>
 								</a>
 							</li>
@@ -70,12 +70,12 @@
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle no-arrow">
+								<a href="log.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-list-alt"></span><span class="mtext">Log</span>
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle no-arrow">
+								<a href="login.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-user-times"></span><span class="mtext">Log out</span>
 								</a>
 							</li>
