@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+
+<?php include('koneksi.php'); ?>
+<?php 
+	$query = mysql_query("SELECT * FROM batch_produksi ORDER BY id DESC");
+	$row_query = mysql_fetch_assoc($query);
+?>
+
 <html>
 <head>
 	<?php include('include/head.php'); ?>
@@ -46,6 +53,7 @@
 						<thead>
 								<tr>
 									<th class="table-plus">No.</th>
+									<th>Pemesan</th>
 									<th>Batch Code</th>
 									<th>Tanggal Mulai Produksi</th>
                                     <th>Tanggal Akhir Produksi</th>
@@ -53,24 +61,29 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="table-plus">1</td>
-									<td>25</td>
-									<td>10-03-2024</td>
-									<td>13-03-2023</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="fa fa-ellipsis-h"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
+								<?php 
+									$i=1; do {
+								?>
+									<tr>
+										<td class="table-plus"><?= $i++ ?></td>
+										<td><?= $row_query['id_pemesan']; ?></td>
+										<td><?= $row_query['kode_batch']; ?></td>
+										<td><?= $row_query['tgl_mulai']; ?></td>
+										<td><?= $row_query['tgl_akhir']; ?></td>
+										<td>
+											<div class="dropdown">
+												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+													<i class="fa fa-ellipsis-h"></i>
+												</a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
+													<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
+													<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
+												</div>
 											</div>
-										</div>
-									</td>
-								</tr>
+										</td>
+									</tr>
+								<?php } while ($row_query = mysql_fetch_assoc($query)); ?>
 							</tbody>
 						</table>
 					</div>

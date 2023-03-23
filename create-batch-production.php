@@ -5,11 +5,12 @@
 	<?php include('koneksi.php'); ?>
 	<?php 
 		if (isset($_POST['create'])) {
+			$id_pemesan = $_POST['id_pemesan'];
 			$kode_batch = $_POST['kode_batch'];
 			$tgl_mulai = $_POST['tgl_mulai'];
 			$tgl_akhir = $_POST['tgl_akhir'];
 
-			$query_create = mysql_query("INSERT INTO batch_produksi (kode_batch, tgl_mulai, tgl_akhir) VALUES ('$kode_batch', '$tgl_mulai', '$tgl_akhir')");
+			$query_create = mysql_query("INSERT INTO batch_produksi (id_pemesan, kode_batch, tgl_mulai, tgl_akhir) VALUES ('$id_pemesan', '$kode_batch', '$tgl_mulai', '$tgl_akhir')");
 
 			if ($query_create) {
 				header("Location: batch-production-table.php?create=success");
