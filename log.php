@@ -21,22 +21,12 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Akun</li>
 									<li class="breadcrumb-item active" aria-current="page">Log</li>
 								</ol>
 							</nav>
 						</div>
-						<div class="col-md-6 col-sm-12 text-right">
-							<div class="dropdown">
-								<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-									January 2018
-								</a>
-								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">Export List</a>
-									<a class="dropdown-item" href="#">Policies</a>
-									<a class="dropdown-item" href="#">View Assets</a>
-								</div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<!-- Simple Datatable start -->
@@ -52,10 +42,15 @@
 								</tr>
 							</thead>
 							<tbody>
+									<?php
+									include "koneksi.php";
+									$query_mysql = mysql_query("SELECT * FROM log ORDER BY 'id' DESC")or die(mysql_error());
+									while($data = mysql_fetch_array($query_mysql)){
+									?>
 								<tr>
-									<td class="table-plus">1</td>
-									<td>32-01-2023</td>
-									<td>-</td>
+									<td class="table-plus">  <?php echo $data['id']; ?>  </td>
+									<td> <?php echo $data['date']; ?> </td>
+									<td> <?php echo $data['note']; ?> </td>
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -69,6 +64,9 @@
 										</div>
 									</td>
 								</tr>
+							<?php
+							}
+							?>
 							</tbody>
 						</table>
 					</div>

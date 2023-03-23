@@ -2,6 +2,22 @@
 <html>
 <head>
 	<?php include('include/head.php'); ?>
+	<?php include('koneksi.php'); ?>
+	<?php 
+		if (isset($_POST['create'])) {
+			$kode_batch = $_POST['kode_batch'];
+			$tgl_mulai = $_POST['tgl_mulai'];
+			$tgl_akhir = $_POST['tgl_akhir'];
+
+			$query_create = mysql_query("INSERT INTO batch_produksi (kode_batch, tgl_mulai, tgl_akhir) VALUES ('$kode_batch', '$tgl_mulai', '$tgl_akhir')");
+
+			if ($query_create) {
+				header("Location: batch-production-table.php?create=success");
+			} else {
+				header("Location: create-batch-production.php?create=failed");
+			}
+		}
+	?>
 </head>
 <body>
 	<?php include('include/header.php'); ?>
@@ -18,63 +34,58 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Production</li>
                                     <li class="breadcrumb-item"><a href="batch-production-table.php">Batch Production</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Create New</li>
 								</ol>
 							</nav>
 						</div>
-						<div class="col-md-6 col-sm-12 text-right">
-							<div class="dropdown">
-								<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-									January 2018
-								</a>
-								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">Export List</a>
-									<a class="dropdown-item" href="#">Policies</a>
-									<a class="dropdown-item" href="#">View Assets</a>
-								</div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<!-- Default Basic Forms Start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<form>
-					<div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Pemesan Produk</label>
-                        <div class="col-sm-12 col-md-10">
-                            <select class="custom-select col-12">
-                                <option selected="">Choose...</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
-					</div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Batch Code</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" value="100" type="number">
-                        </div>
-					</div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Tanggal Mulai Produksi</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control date-picker" placeholder="Select Date" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Tanggal Akhir Produksi</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control date-picker" placeholder="Select Date" type="text">
-                        </div>
-                    </div>
-					</form>
-					<div class="clearfix">
-						<div class="pull-right">
-							<a href="batch-production-table.php" class="btn btn-primary btn-sm" role="button">Create</a>
+					<form action="" method="POST">
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Pemesan Produk</label>
+							<div class="col-sm-12 col-md-10">
+								<select name="id_pemesan" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<?php 
+										// GET ID PEMESAN FROM TBL PEMESAN
+										$query_pemesan = mysql_query("SELECT * FROM pemesan");
+										$data_pemesan = mysql_fetch_assoc($query_pemesan);
+										do {										
+									?>
+										<option value="<?= $data_pemesan['id']; ?>"><?=$data_pemesan['kode'] . "-" . $data_pemesan['ket']; ?></option>
+									<?php } while($data_pemesan = mysql_fetch_assoc($query_pemesan)); ?>
+								</select>
+							</div>
 						</div>
-					</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Batch Code</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" name="kode_batch" placeholder="Code" type="number">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Tanggal Mulai Produksi</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control date-picker" name="tgl_mulai" placeholder="Select Date" type="text">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Tanggal Akhir Produksi</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control date-picker" name="tgl_akhir" placeholder="Select Date" type="text">
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="pull-right">
+								<button type="submit" name="create" class="btn btn-primary btn-sm" role="button">Create</button>
+							</div>
+						</div>
+					</form>
 				</div>	
 				<!-- Default Basic Forms End -->
 			</div>

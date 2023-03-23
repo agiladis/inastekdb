@@ -1,43 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<?php include('include/head.php'); ?>
-</head>
-<body>
-	<div class="login-wrap customscroll d-flex align-items-center flex-wrap justify-content-center pd-20">
-		<div class="login-box bg-white box-shadow pd-30 border-radius-5">
-			<img src="images/logo-inastek-removebg.png" alt="login" class="login-img">
-			<h2 class="text-center mb-30">Login</h2>
-			<form>
-				<div class="input-group custom input-group-lg">
-					<input type="text" class="form-control" placeholder="Username">
-					<div class="input-group-append custom">
-						<span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
-					</div>
-				</div>
-				<div class="input-group custom input-group-lg">
-					<input type="password" class="form-control" placeholder="**********">
-					<div class="input-group-append custom">
-						<span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="input-group">
-							<!--
-								use code for form submit
-								<input class="btn btn-outline-primary btn-lg btn-block" type="submit" value="Sign In">
-							-->
-							<a class="btn btn-outline-primary btn-lg btn-block" href="index.php">Sign In</a>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="forgot-password padding-top-10"><a href="forgot-password.php">Forgot Password</a></div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-	<?php include('include/script.php'); ?>
-</body>
-</html>
+<?php
+session_start();
+include "koneksi.php";
+$user = $_POST['user'];
+$pass = sha1($_POST['password']);
+$op = $_GET['op'];
+$hai = ".sha1($pass).";
+
+if($op=="in"){
+    $sql = mysql_query("SELECT * FROM userlist WHERE user='$user' AND password='$pass'");
+    $datee = date("d-m-Y H:i:s");
+    if(mysql_num_rows($sql)==1){//jika berhasil akan bernilai 1
+        $qry = mysql_fetch_array($sql);
+        $_SESSION['user'] = $qry['user'];
+        $_SESSION['nama'] = $qry['nama'];
+        $_SESSION['level'] = $qry['level'];
+        $_SESSION['ugroup'] = $qry['ugroup'];
+        $infoo ="Login berhasil ".$qry['user']." (".$qry['level'].")" ;
+        mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+        mysql_query("UPDATE userlist SET lastlogin='$datee' WHERE user='$user'");
+        if($qry['level']=="root"){
+            header("location:home.php");
+        }
+
+        if($qry['level']=="admin"){
+            header("location:home.php");
+        }
+
+        else if($qry['level']=="user"){
+            header("location:home.php");
+        }
+
+    }else{
+        $infoo ="Percobaan login salah dengan user : ".$user ;
+        mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+        //echo $infoo;
+        //echo $datee;
+        ?>
+        <script language="JavaScript">
+            alert('Username atau Password yang anda masukkan salah!');
+            document.location='login-page.php';
+        </script>
+        <?php
+    }
+}else if($op=="out"){
+    unset($_SESSION['user']);
+    unset($_SESSION['level']);
+    header("location:index.php");
+}
+?>
