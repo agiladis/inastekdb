@@ -2,6 +2,29 @@
 <html>
 <head>
 	<?php include('include/head.php'); ?>
+	<?php include('koneksi.php'); ?>
+	<?php
+		// GENERATE SERIAL NUMBER
+
+		$id_batch_produksi = $_POST['batch_produksi'];
+		$id_kategori_produk = $_POST['kategori_produk'];
+		// query join produksi
+		$query_produksi = mysql_query("SELECT * FROM batch_produksi LEFT JOIN pemesan ON batch_produksi.id_pemesan = pemesan.id WHERE batch_produksi.id = $id_batch_produksi ");
+		$row_produksi = mysql_fetch_assoc($query_produksi);
+		// query kategori
+		$query_kategori = mysql_query("SELECT * FROM kategori_produk WHERE id = $id_kategori_produk ");
+		$row_kategori = mysql_fetch_assoc($query_kategori);
+
+
+		// INSERT INTO TABLE serial_number FIELD serial_number, LCD, PCB, LOADCELL
+		$kode_pemesan = $row_produksi['kode'];
+		$kode_kategori = $row_kategori['kode'];
+		$kode_batch = $row_produksi['kode_batch'];
+		$kode_nomor = $_POST['kode_nomor'];
+
+		$serial_number = $kode_pemesan . "-" . $kode_kategori . "-" . $kode_batch . "-" . $kode_nomor;
+
+	?>
 </head>
 <body>
 	<?php include('include/header.php'); ?>
@@ -30,14 +53,14 @@
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="clearfix">
 						<div class="pull-left">
-							<h4>LCD-132-31241</h4>
+							<h4><?= $serial_number ?></h4>
 						</div>
 					</div>
                     <div class="width-50-p container">
                         <img src="images/qr.jpeg" id="media" alt="">
                     </div>
 					<div class="footer-wrap pd-20 mb-20">
-						<h4>Serial Number: BBWS-1-1-1</h4>
+						<h4>Serial Number: <?= $serial_number ?> </h4>
 					</div>
 				</div>
 			</div>
