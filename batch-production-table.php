@@ -2,7 +2,7 @@
 
 <?php include('koneksi.php'); ?>
 <?php 
-	$query = mysql_query("SELECT * FROM batch_produksi ORDER BY id DESC");
+	$query = mysql_query("SELECT * FROM batch_produksi LEFT JOIN pemesan on batch_produksi.id_pemesan = pemesan.id ORDER BY batch_produksi.id DESC");
 	$row_query = mysql_fetch_assoc($query);
 ?>
 
@@ -66,7 +66,7 @@
 								?>
 									<tr>
 										<td class="table-plus"><?= $i++ ?></td>
-										<td><?= $row_query['id_pemesan']; ?></td>
+										<td><?= $row_query['ket']; ?></td>
 										<td><?= $row_query['kode_batch']; ?></td>
 										<td><?= $row_query['tgl_mulai']; ?></td>
 										<td><?= $row_query['tgl_akhir']; ?></td>
