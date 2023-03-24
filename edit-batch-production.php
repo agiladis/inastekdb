@@ -4,18 +4,27 @@
 	<?php include('include/head.php'); ?>
 	<?php include('koneksi.php'); ?>
 	<?php 
-		if (isset($_POST['create'])) {
+        // GET OLD DATA
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $query_get = mysql_query("SELECT * FROM batch_produksi WHERE id = $id ");
+            $row_edit = mysql_fetch_assoc($query_get);
+        }
+        
+        // UPDATE TABLE
+		if (isset($_POST['update'])) {
 			$id_pemesan = $_POST['id_pemesan'];
 			$kode_batch = $_POST['kode_batch'];
 			$tgl_mulai = $_POST['tgl_mulai'];
 			$tgl_akhir = $_POST['tgl_akhir'];
 
-			$query_create = mysql_query("INSERT INTO batch_produksi (id_pemesan, kode_batch, tgl_mulai, tgl_akhir) VALUES ('$id_pemesan', '$kode_batch', '$tgl_mulai', '$tgl_akhir')");
+			$query_update = mysql_query("UPDATE batch_produksi SET id_pemesan = '$id_pemesan', kode_batch = '$kode_batch', tgl_mulai = '$tgl_mulai', tgl_akhir = '$tgl_akhir' WHERE id = '$id' ");
 
-			if ($query_create) {
-				header("Location: batch-production-table.php?create=success");
+			if ($query_update) {
+				header("Location: batch-production-table.php?update=successed");
 			} else {
-				header("Location: create-batch-production.php?create=failed");
+				header("Location: edit-batch-production.php?id=$id&update=failed");
 			}
 		}
 	?>
@@ -30,14 +39,14 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Create New</h4>
+								<h4>Edit Data</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Production</li>
                                     <li class="breadcrumb-item"><a href="batch-production-table.php">Batch Production</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Create New</li>
+									<li class="breadcrumb-item active" aria-current="page">Edit Data</li>
 								</ol>
 							</nav>
 						</div>
@@ -51,14 +60,14 @@
 							<label class="col-sm-12 col-md-2 col-form-label">Pemesan Produk</label>
 							<div class="col-sm-12 col-md-10">
 								<select name="id_pemesan" class="custom-select col-12">
-									<option selected>Choose...</option>
+									<option disabled selected>Choose...</option>
 									<?php 
 										// GET ID PEMESAN FROM TBL PEMESAN
 										$query_pemesan = mysql_query("SELECT * FROM pemesan");
 										$data_pemesan = mysql_fetch_assoc($query_pemesan);
 										do {										
 									?>
-										<option value="<?= $data_pemesan['id']; ?>"><?=$data_pemesan['kode'] . "-" . $data_pemesan['ket']; ?></option>
+										<option value="<?= $data_pemesan['id']; ?>" <?php if ($row_edit['id_pemesan'] == $data_pemesan['id']) echo 'selected="selected"'; ?> ><?=$data_pemesan['kode'] . "-" . $data_pemesan['ket']; ?></option>
 									<?php } while($data_pemesan = mysql_fetch_assoc($query_pemesan)); ?>
 								</select>
 							</div>
@@ -66,24 +75,24 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Batch Code</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" name="kode_batch" placeholder="Code" type="number">
+								<input class="form-control" name="kode_batch" placeholder="Code" type="number" value="<?= $row_edit['kode_batch'] ?>">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Tanggal Mulai Produksi</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control date-picker" name="tgl_mulai" placeholder="Select Date" type="text">
+								<input class="form-control date-picker" name="tgl_mulai" placeholder="Select Date" type="text" value="<?= $row_edit['tgl_mulai'] ?>">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Tanggal Akhir Produksi</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control date-picker" name="tgl_akhir" placeholder="Select Date" type="text">
+								<input class="form-control date-picker" name="tgl_akhir" placeholder="Select Date" type="text" value="<?= $row_edit['tgl_akhir'] ?>">
 							</div>
 						</div>
 						<div class="clearfix">
 							<div class="pull-right">
-								<button type="submit" name="create" class="btn btn-primary btn-sm" role="button">Create</button>
+								<button type="submit" name="update" class="btn btn-primary btn-sm" role="button">Create</button>
 							</div>
 						</div>
 					</form>

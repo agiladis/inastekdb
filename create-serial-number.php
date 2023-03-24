@@ -2,6 +2,7 @@
 <html>
 <head>
 	<?php include('include/head.php'); ?>
+    <?php include('koneksi.php'); ?>
 </head>
 <body>
 	<?php include('include/header.php'); ?>
@@ -19,6 +20,7 @@
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Production</li>
+                                    <li class="breadcrumb-item"><a href="serial-number.php">List Serial Number</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Create Serial Number</li>
 								</ol>
 							</nav>

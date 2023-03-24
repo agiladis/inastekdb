@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-
-<?php include('koneksi.php'); ?>
-<?php 
-	$query = mysql_query("SELECT * FROM batch_produksi ORDER BY id DESC");
-	$row_query = mysql_fetch_assoc($query);
-?>
-
 <html>
 <head>
 	<?php include('include/head.php'); ?>
@@ -23,16 +16,17 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Batch Production</h4>
+								<h4>List Serial Number</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Production</li>
-									<li class="breadcrumb-item active" aria-current="page">Batch Production</li>
+									<li class="breadcrumb-item active" aria-current="page">List Serial Number</li>
 								</ol>
 							</nav>
 						</div>
+					
 					</div>
 				</div>
 				<!-- Simple Datatable start -->
@@ -45,7 +39,7 @@
 					</div> -->
                     <div class="clearfix mb-20">
 						<div class="pull-left">
-							<a href="create-batch-production.php" class="btn btn-success btn-lg" role="button">Create New</a>
+							<a href="create-serial-number.php" class="btn btn-success btn-lg" role="button">Create New</a>
 						</div>
 					</div>
 					<div class="row">
@@ -53,37 +47,29 @@
 						<thead>
 								<tr>
 									<th class="table-plus">No.</th>
-									<th>Pemesan</th>
-									<th>Batch Code</th>
-									<th>Tanggal Mulai Produksi</th>
-                                    <th>Tanggal Akhir Produksi</th>
+									<th>Code</th>
+									<th>Detail</th>
                                     <th class="datatable-nosort"></th>
 								</tr>
 							</thead>
 							<tbody>
-								<?php 
-									$i=1; do {
-								?>
-									<tr>
-										<td class="table-plus"><?= $i++ ?></td>
-										<td><?= $row_query['id_pemesan']; ?></td>
-										<td><?= $row_query['kode_batch']; ?></td>
-										<td><?= $row_query['tgl_mulai']; ?></td>
-										<td><?= $row_query['tgl_akhir']; ?></td>
-										<td>
-											<div class="dropdown">
-												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-													<i class="fa fa-ellipsis-h"></i>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
-													<a class="dropdown-item" href="edit-batch-production.php?id=<?= $row_query['id'] ?>"><i class="fa fa-pencil"></i> Edit</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
-												</div>
+								<tr>
+									<td class="table-plus">1</td>
+									<td>25</td>
+									<td>-</td>
+									<td>
+										<div class="dropdown">
+											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+												<i class="fa fa-ellipsis-h"></i>
+											</a>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
+												<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
+												<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
 											</div>
-										</td>
-									</tr>
-								<?php } while ($row_query = mysql_fetch_assoc($query)); ?>
+										</div>
+									</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
