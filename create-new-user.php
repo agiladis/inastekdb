@@ -1,3 +1,45 @@
+<?php
+session_start();
+if(isset($_POST['register'])){
+	require_once("koneksi.php");
+	$nama = $_POST['nama'];
+	$level = $_POST['level'];
+	$username = $_POST['username'];
+	$pass = $_POST['password'];
+	$pass2 = $_POST['password2'];
+	$ugroup = $_POST['ugroup'];
+	$datee = date("d-m-Y H:i:s");
+	$usernow = $_SESSION['nama'];
+
+	$cekuser = mysql_query("SELECT * FROM userlist WHERE user = '$username'");
+	if($pass==$pass2){
+		if(mysql_num_rows($cekuser) > 0) {
+		$message="Username Sudah Terdaftar!";
+		} else {
+		if(!$username || !$pass || !$level || !$nama) {
+			$message="Masih ada data yang kosong!";
+		} else {
+		$simpan = mysql_query("INSERT INTO userlist(user, nama, password, level,ugroup) VALUES('$username','$nama','".sha1($pass)."','$level','$ugroup')");
+		if($simpan) {
+			$message="Pendaftaran Sukses!";
+			$infoo ="Pendaftaran user baru (".$nama.") oleh ".$usernow ;
+			mysql_query("INSERT INTO log(date,note) VALUES('$datee','$infoo')");
+
+		} else {
+			$message="Proses Gagal!";
+		}
+		}
+		}
+	} else{
+		$message=" Retype-Password tidak sama! ";
+		}
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,27 +55,17 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Form</h4>
+								<h4>Create New User</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Form Basic</li>
+									<li class="breadcrumb-item active" aria-current="page">Account</li>
+									<li class="breadcrumb-item active" aria-current="page">Create New User</li>
 								</ol>
 							</nav>
 						</div>
-						<div class="col-md-6 col-sm-12 text-right">
-							<div class="dropdown">
-								<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-									January 2018
-								</a>
-								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">Export List</a>
-									<a class="dropdown-item" href="#">Policies</a>
-									<a class="dropdown-item" href="#">View Assets</a>
-								</div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<!-- Default Basic Forms Start -->
@@ -44,47 +76,58 @@
 							<p></p>
 						</div>
 					</div>
-					<form>
+					<form method="POST">
 					<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">User Group</label>
 							<div class="col-sm-12 col-md-10">
-								<select class="custom-select col-12">
-									<option selected="">Choose...</option>
-                                    <option value="0">Admin Root</option>
-									<option value="1">Engineer</option>
-									<option value="2">PPIC</option>
-									<option value="3">QC</option>
-                                    <option value="3">Warehouse</option>
+								<select class="custom-select col-12" name="ugroup">
+									<option selected="">Pilih...</option>
+									<option value="Engineer">Engineer</option>
+									<option value="PPIC">PPIC</option>
+									<option value="QC">QC</option>
+                                    <option value="Warehouse">Warehouse</option>
 								</select>
 							</div>
 					</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Nama</label>
+					<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Previlege</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="Johnny Brown">
+								<select class="custom-select col-12" name="level">
+									<option selected="">Pilih...</option>
+                                    <option value="root">Root</option>
+									<option value="root">Admin</option>
+									<option value="root">User</option>
+								</select>
+							</div>
+					</div>
+
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Nama Lengkap</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="text" placeholder="John Brown" name="nama">
 							</div>
 						</div>
                         <div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Username</label>
+							<label class="col-sm-12 col-md-2 col-form-label">Username (for login)</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="Johnny Brown">
+								<input class="form-control" type="text" placeholder="johnbrown_" name="username">
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Password</label>
+							<label class="col-sm-12 col-md-2 col-form-label">Password (for login)</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="" type="password">
+								<input class="form-control" value="" type="password" name="password">
 							</div>
 						</div>
                         <div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Retype Password</label>
+							<label class="col-sm-12 col-md-2 col-form-label">Retype Password (for login)</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="" type="password">
+								<input class="form-control" value="" type="password" name="password2">
 							</div>
 						</div>
 					<div class="clearfix">
 						<div class="pull-right">
-							<a href="#" class="btn btn-primary btn-sm scroll-click"  data-toggle="collapse" role="button">Submit</a>
+							<button name="register" type="submit" class="btn btn-primary btn-sm scroll-click"  data-toggle="collapse" role="button"> Register </button>
 						</div>
 					</div>
 				</div>	

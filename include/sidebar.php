@@ -28,6 +28,11 @@
 								</a>
 							</li>
 							<li class="dropdown">
+								<a href="incoming-hw.php" class="dropdown-toggle no-arrow">
+									<span class="fa fa-list"></span><span class="mtext">Incoming Hardware</span>
+								</a>
+							</li>
+							<li class="dropdown">
 								<a href="list-kategori-produk.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-th-list"></span><span class="mtext">List Kategori Produk</span>
 								</a>
@@ -41,7 +46,7 @@
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="fa fa-user-circle-o"></span><span class="mtext">Akun</span>
+							<span class="fa fa-user-circle-o"></span><span class="mtext">Account</span>
 						</a>
 						<ul class="submenu">
 							<li class="dropdown">
@@ -65,17 +70,12 @@
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="login.php" class="dropdown-toggle no-arrow">
-									<span class="fa fa-user-circle"></span><span class="mtext">Login Page</span>
-								</a>
-							</li>
-							<li class="dropdown">
 								<a href="log.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-list-alt"></span><span class="mtext">Log</span>
 								</a>
 							</li>
 							<li class="dropdown">
-								<a href="login.php" class="dropdown-toggle no-arrow">
+								<a href="logout.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-user-times"></span><span class="mtext">Log out</span>
 								</a>
 							</li>

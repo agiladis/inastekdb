@@ -1,3 +1,22 @@
+<?php
+	include('koneksi.php');
+
+	$query = "SELECT * FROM kategori_produk ";
+	$result = mysql_query($query);
+	$row = mysql_fetch_assoc($result);
+	if (isset($_GET['delete'])) {
+		$id = $_GET['delete'];
+		$query = "DELETE FROM kategori_produk WHERE id = '$id'";
+		$result = mysql_query($query);
+
+		if($result) {
+			// Jika berhasil, redirect ke halaman list kategori produk
+			header('Location: list-kategori-produk.php');
+			exit;
+		}
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,22 +40,12 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Production</li>
 									<li class="breadcrumb-item active" aria-current="page">List Kategori Produk</li>
 								</ol>
 							</nav>
 						</div>
-						<div class="col-md-6 col-sm-12 text-right">
-							<div class="dropdown">
-								<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-									January 2018
-								</a>
-								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">Export List</a>
-									<a class="dropdown-item" href="#">Policies</a>
-									<a class="dropdown-item" href="#">View Assets</a>
-								</div>
-							</div>
-						</div>
+					
 					</div>
 				</div>
 				<!-- Simple Datatable start -->
@@ -49,7 +58,7 @@
 					</div> -->
                     <div class="clearfix mb-20">
 						<div class="pull-left">
-							<a href="create-product-category.php" class="btn btn-success btn-lg" role="button">Create New</a>
+							<a href="create-product-category.php?" class="btn btn-success btn-lg" role="button">Create New</a>
 						</div>
 					</div>
 					<div class="row">
@@ -63,10 +72,15 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php
+								$i=1;
+								$t=1;	
+								if (mysql_num_rows($result) == 0){
+								}else{  do  { ?>
 								<tr>
-									<td class="table-plus">1</td>
-									<td>25</td>
-									<td>-</td>
+									<td class="table-plus"><?= $i++; ?></td>
+									<td><?= $row['kode']?></td>
+									<td><?= $row['detail']?></td>
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -74,12 +88,14 @@
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">
 												<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
+												<a class="dropdown-item" href="edit-product-category.php?edit=<?=$row['id']?>&table=<?= $t++ ;?>"><i class="fa fa-pencil"></i> Edit</a>
+												<a class="dropdown-item" href="list-kategori-produk.php?delete=<?=$row['id']?>"><i class="fa fa-trash"></i> Delete</a>
 											</div>
 										</div>
 									</td>
 								</tr>
+
+								<?php } while ($row = mysql_fetch_assoc($result)); }?>
 							</tbody>
 						</table>
 					</div>

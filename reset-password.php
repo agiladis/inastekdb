@@ -1,45 +1,100 @@
+<?php
+
+session_start();
+if(isset($_POST['register'])){
+	require_once("koneksi.php");
+	$user=$_SESSION['user'];
+	$passold=$_POST['passold'];
+	$passnew=$_POST['passnew'];
+	$passnew2=$_POST['passnew2'];
+
+	$cekuser = mysql_query("SELECT * FROM userlist WHERE user = '$user' AND password = '".sha1($passold)."' ");
+	if(mysql_num_rows($cekuser) > 0) {
+		//$message="cocok";
+		if($passnew==$passnew2){
+			//$message="cocok kuadrat";
+			$simpan = mysql_query("UPDATE userlist SET password='".sha1($passnew2)."' WHERE user='$user' ");
+			if($simpan) {
+			$message="Update Password Sukses!";
+			} else {
+			$message="Terjadi Galat!";
+			}
+		} else {
+			$message="Ketik ulang password baru Anda salah!";
+		}
+	}
+	else{
+		$message="Password lama Anda Salah!";
+	}
+
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<?php include('include/head.php'); ?>
 </head>
 <body>
-	<div class="login-wrap customscroll d-flex align-items-center flex-wrap justify-content-center pd-20">
-		<div class="login-box bg-white box-shadow pd-30 border-radius-5">
-			<img src="images/logo-inastek-removebg.png" alt="login" class="login-img">
-			<h2 class="text-center mb-30">Reset Password</h2>
-			<form>
-				<p>Enter your new password, confirm and submit</p>
-				<div class="input-group custom input-group-lg">
-					<input type="password" class="form-control" placeholder="Password Now">
-					<div class="input-group-append custom">
-						<span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
-					</div>
-				</div>
-				<div class="input-group custom input-group-lg">
-					<input type="password" class="form-control" placeholder="New Password">
-					<div class="input-group-append custom">
-						<span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
-					</div>
-				</div>
-				<div class="input-group custom input-group-lg">
-					<input type="password" class="form-control" placeholder="Confirm New Password">
-					<div class="input-group-append custom">
-						<span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="input-group">
-							<!--
-								use code for form submit
-								<input class="btn btn-primary btn-lg btn-block" type="submit" value="Submit">
-							-->
-							<a class="btn btn-primary btn-lg btn-block" href="index.php">Submit</a>
+	<?php include('include/header.php'); ?>
+	<?php include('include/sidebar.php'); ?>
+	<div class="main-container">
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="title">
+								<h4>Form</h4>
+							</div>
+							<nav aria-label="breadcrumb" role="navigation">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Akun</li>
+									<li class="breadcrumb-item active" aria-current="page">Reset Password</li>
+								</ol>
+							</nav>
 						</div>
 					</div>
 				</div>
-			</form>
+				<!-- Default Basic Forms Start -->
+				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+					<div class="clearfix">
+						<div class="pull-left">
+							<h4 class="text-blue">Reset Password</h4>
+						</div>
+					</div>
+					<form method="POST">
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Current Password</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" value="" type="password" name="passold">
+							</div>
+						</div>
+                        <div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">New Password</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" value="" type="password" name="passnew">
+							</div>
+						</div>
+                        <div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Retype New Password</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" value="" type="password" name="passnew2">
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="pull-right">
+							<button name="register" type="submit" class="btn btn-primary btn-sm scroll-click"  data-toggle="collapse" role="button"> Change Password </button>
+							</div>
+						</div>
+					</form>
+				</div>	
+				<!-- Default Basic Forms End -->
+			</div>
+			<?php include('include/footer.php'); ?>
 		</div>
 	</div>
 	<?php include('include/script.php'); ?>
