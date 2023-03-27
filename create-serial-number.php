@@ -10,7 +10,7 @@
             // if any data get last digit increment
             $row_kode = mysql_fetch_assoc($query_kode);
             $last_digit_kode_nomor = intval(substr($row_kode["serial_number"], -4));
-            $number = sprintf('%04d', $last_digit_kode_nomor);
+            $number = sprintf('%04d', $last_digit_kode_nomor + 1);
         } else {
             // if no data exist
             $last_digit_kode_nomor = 0001;   
