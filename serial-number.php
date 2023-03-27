@@ -2,6 +2,12 @@
 <html>
 <head>
 	<?php include('include/head.php'); ?>
+	<?php include('koneksi.php'); ?>
+	<?php
+		$query = mysql_query("SELECT * FROM serial_number");
+		$row_serial_number = mysql_fetch_assoc($query);
+	?>
+
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/dataTables.bootstrap4.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/responsive.dataTables.css">
@@ -53,23 +59,25 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="table-plus">1</td>
-									<td>25</td>
-									<td>-</td>
-									<td>
-										<div class="dropdown">
-											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="fa fa-ellipsis-h"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
+								<?php $i=1; do { ?>
+									<tr>
+										<td class="table-plus"><?= $i++ ?></td>
+										<td><?= $row_serial_number['serial_number']; ?></td>
+										<td><?= "LCD : " . $row_serial_number['LCD'] . "</br>PCB : " . $row_serial_number['PCB'] . "</br>LOADCELL : " . $row_serial_number['LOADCELL']; ?></td>
+										<td>
+											<div class="dropdown">
+												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+													<i class="fa fa-ellipsis-h"></i>
+												</a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
+													<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
+													<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
+												</div>
 											</div>
-										</div>
-									</td>
-								</tr>
+										</td>
+									</tr>
+								<?php } while ($row_serial_number = mysql_fetch_assoc($query)); ?>
 							</tbody>
 						</table>
 					</div>
