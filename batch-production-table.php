@@ -4,6 +4,16 @@
 <?php 
 	$query = mysql_query("SELECT *, batch_produksi.id as 'id_batch' FROM batch_produksi LEFT JOIN pemesan on batch_produksi.id_pemesan = pemesan.id ORDER BY batch_produksi.id DESC");
 	$row_query = mysql_fetch_assoc($query);
+
+	// HANDLE DELETE 
+	if (isset($_GET['delete'])) {
+		$id = $_GET['delete'];
+		$query_delete = mysql_query("DELETE FROM batch_produksi WHERE id = $id");
+		
+		if ($query_delete) {
+			header('Location: batch-production-table.php?delete=success');
+		}
+	}
 ?>
 
 <html>
@@ -77,7 +87,7 @@
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
 													<a class="dropdown-item" href="edit-batch-production.php?edit=<?= $row_query['id_batch'] ?>"><i class="fa fa-pencil"></i> Edit</a>
-													<a class="dropdown-item" href="batch-production-table.php?delete=<?= $row_query['id_batch'] ?>"><i class="fa fa-trash"></i> Delete</a>
+													<a class="dropdown-item" href="batch-production-table.php?delete=success?delete=<?= $row_query['id_batch'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
 												</div>
 											</div>
 										</td>
