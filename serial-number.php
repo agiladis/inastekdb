@@ -59,11 +59,29 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php $i=1; do { ?>
+								<?php $i=1; do { 
+									//Menganbil data LCD
+									$id_lcd = $row_serial_number['LCD'];
+									$query_lcd= mysql_query("SELECT * FROM perangkat WHERE id = $id_lcd"); 
+									$row_lcd = mysql_fetch_assoc($query_lcd); 
+									
+									//Mengambil data PCB
+									$id_pcb = $row_serial_number['PCB'];
+									$query_PCB= mysql_query("SELECT * FROM perangkat WHERE id = $id_pcb"); 
+									$row_pcb = mysql_fetch_assoc($query_PCB);
+
+									//Mengambil data LoadCell
+									$id_loadcell = $row_serial_number['LOADCELL'];
+									$query_loadcell= mysql_query("SELECT * FROM perangkat WHERE id = $id_loadcell"); 
+									$row_loadcell = mysql_fetch_assoc($query_loadcell);
+									?>
 									<tr>
 										<td class="table-plus"><?= $i++ ?></td>
 										<td><?= $row_serial_number['serial_number']; ?></td>
-										<td><?= "LCD : " . $row_serial_number['LCD'] . "</br>PCB : " . $row_serial_number['PCB'] . "</br>LOADCELL : " . $row_serial_number['LOADCELL']; ?></td>
+
+										<td><?= "LCD : " . $row_lcd['tgl_datang'] ."-".$row_lcd['no_batch'] ."-". $row_lcd['no_kardus']. 
+										"</br>PCB : " . $row_pcb['tgl_datang'] ."-".$row_pcb['no_batch'] ."-". $row_pcb['no_kardus']. 
+										"</br>LOADCELL : " . $row_loadcell['tgl_datang'] ."-".$row_loadcell['no_batch'] ."-". $row_loadcell['no_kardus']; ?></td>
 										<td>
 											<div class="dropdown">
 												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
