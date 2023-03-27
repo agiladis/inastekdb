@@ -143,6 +143,8 @@ if(isset($_POST['sdelete'])){
 									<th>Qty</th>
 									<th>No. Batch</th>
 									<th>No. Kardus</th>
+									<th>Tangal Incoming</th>
+
                                     <th>Aksi</th>
                                     <th class="datatable-nosort"></th>
 								</tr>
@@ -162,6 +164,7 @@ if(isset($_POST['sdelete'])){
                                     <td> <?php echo $data['unit_barang']; ?> Unit</td>
 									<td> Batch-No.<?php echo $data['no_batch']; ?></td>
 									<td> Box-No.<?php echo $data['no_kardus']; ?></td>
+									<td> <?php echo $data['tgl_datang']; ?></td>
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
