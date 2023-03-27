@@ -90,7 +90,7 @@
                                     <option selected>Choose...</option>
                                     <?php 
 										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
-										$query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = 'LCD'");
+										$query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%'");
 										$data_lcd = mysql_fetch_assoc($query_perangkat_lcd);
 										do {										
 									?>
@@ -106,7 +106,7 @@
                                     <option selected>Choose...</option>
                                     <?php 
 										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "PCB"
-										$query_perangkat_pcb = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = 'PCB'");
+										$query_perangkat_pcb = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'PCB%'");
 										$data_pcb = mysql_fetch_assoc($query_perangkat_pcb);
 										do {										
 									?>
@@ -122,7 +122,7 @@
                                     <option selected>Choose...</option>
                                     <?php 
 										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "LOADCELL"
-										$query_perangkat_loadcell = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = 'LOADCELL'");
+										$query_perangkat_loadcell = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LOADCELL%'");
 										$data_loadcell = mysql_fetch_assoc($query_perangkat_loadcell);
 										do {										
 									?>
