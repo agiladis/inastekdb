@@ -21,9 +21,17 @@
 		$kode_kategori = $row_kategori['kode'];
 		$kode_batch = $row_produksi['kode_batch'];
 		$kode_nomor = $_POST['kode_nomor'];
+		$LCD = $_POST['LCD'];
+		$PCB = $_POST['PCB'];
+		$LOADCELL = $_POST['LOADCELL'];
 
 		$serial_number = $kode_pemesan . "-" . $kode_kategori . "-" . $kode_batch . "-" . $kode_nomor;
 
+		$query_insert = mysql_query("INSERT INTO serial_number (serial_number, LCD, PCB, LOADCELL) VALUES ('$serial_number', '$LCD', '$PCB', '$LOADCELL')");
+
+		if(!$query_insert) {
+			header("Location: create-serial-number.php?generate=failed");
+		}
 	?>
 </head>
 <body>
