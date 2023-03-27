@@ -7,11 +7,11 @@
 		$query_log = mysql_query("SELECT * FROM log ORDER BY id DESC LIMIT 10");
 		$row_log = mysql_fetch_assoc($query_log);
 
-		$query_progress_incoming = "SELECT id, COUNT(id) AS 'count_incoming' FROM perangkat";
+		$query_progress_incoming = "SELECT COUNT(id) AS 'count_incoming' FROM perangkat";
 		$result_incoming = mysql_query($query_progress_incoming);
 		$row_incoming = mysql_fetch_assoc($result_incoming);
 
-		$query_serial_number = "SELECT id, COUNT(id) AS 'count_serial_number' FROM serial_number";
+		$query_serial_number = "SELECT COUNT(id) AS 'count_serial_number' FROM serial_number";
 		$result_serial_number = mysql_query($query_serial_number);
 		$row_serial_number = mysql_fetch_assoc($result_serial_number);
 	?>
