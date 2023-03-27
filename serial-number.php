@@ -79,9 +79,9 @@
 										<td class="table-plus"><?= $i++ ?></td>
 										<td><?= $row_serial_number['serial_number']; ?></td>
 
-										<td><?= "LCD : " . $row_lcd['tgl_datang'] ."-".$row_lcd['no_batch'] ."-". $row_lcd['no_kardus']. 
-										"</br>PCB : " . $row_pcb['tgl_datang'] ."-".$row_pcb['no_batch'] ."-". $row_pcb['no_kardus']. 
-										"</br>LOADCELL : " . $row_loadcell['tgl_datang'] ."-".$row_loadcell['no_batch'] ."-". $row_loadcell['no_kardus']; ?></td>
+										<td><?= "LCD : Batch-".$row_lcd['no_batch']. "  Kardus-". $row_lcd['no_kardus'] . "  tgl (". $row_lcd['tgl_datang'].")". 
+										"</br>PCB : Batch-".$row_pcb['no_batch']."  Kardus-".$row_pcb['no_kardus'] ."  tgl (". $row_pcb['tgl_datang'] . ")".
+										"</br>LOADCELL : Batch-".$row_loadcell['no_batch']. "  Kardus-". $row_loadcell['no_kardus']. " tgl (". $row_loadcell['tgl_datang']."0" ; ?></td>
 										<td>
 											<div class="dropdown">
 												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
