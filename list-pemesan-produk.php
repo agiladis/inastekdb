@@ -1,3 +1,24 @@
+<?php
+	include('koneksi.php');
+
+	$query = "SELECT * FROM pemesan";
+	$result = mysql_query($query);
+	$row = mysql_fetch_assoc($result);
+	
+	if (isset($_GET['delete'])) {
+		$id = $_GET['delete'];
+		$query = "DELETE FROM pemesan WHERE id = '$id'";
+		$result = mysql_query($query);
+
+		if($result) {
+			// Jika berhasil, redirect ke halaman list kategori produk
+			header('Location: list-pemesan-produk.php');
+			exit;
+		}
+	}
+	
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,15 +69,18 @@
 								<tr>
 									<th class="table-plus">No.</th>
 									<th>Code</th>
-									<th>Detail</th>
+									<th>Keterangan</th>
                                     <th class="datatable-nosort"></th>
 								</tr>
 							</thead>
 							<tbody>
+								<?php $i=1; $t=1;	
+								if (mysql_num_rows($result) == 0){
+								}else{  do  { ?>
 								<tr>
-									<td class="table-plus">1</td>
-									<td>25</td>
-									<td>-</td>
+									<td class="table-plus"><?= $i++;?></td>
+									<td><?= $row['kode'];?></td>
+									<td><?=$row['ket'];?></td>
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -64,12 +88,13 @@
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">
 												<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
+												<a class="dropdown-item" href="edit-pemesan-produk.php?edit=<?=$row['id']?>&table=<?= $t++?>"><i class="fa fa-pencil"></i> Edit</a>
+												<a class="dropdown-item" href="list-pemesan-produk.php?delete=<?=$row['id']?>"><i class="fa fa-trash"></i> Delete</a>
 											</div>
 										</div>
 									</td>
 								</tr>
+								<?php } while ($row = mysql_fetch_assoc($result)); }?>
 							</tbody>
 						</table>
 					</div>

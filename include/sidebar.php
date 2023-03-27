@@ -28,6 +28,11 @@
 								</a>
 							</li>
 							<li class="dropdown">
+								<a href="incoming-hw.php" class="dropdown-toggle no-arrow">
+									<span class="fa fa-list"></span><span class="mtext">Incoming Hardware</span>
+								</a>
+							</li>
+							<li class="dropdown">
 								<a href="list-kategori-produk.php" class="dropdown-toggle no-arrow">
 									<span class="fa fa-th-list"></span><span class="mtext">List Kategori Produk</span>
 								</a>

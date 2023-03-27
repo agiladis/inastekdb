@@ -1,4 +1,5 @@
 -- phpMyAdmin SQL Dump
+
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
@@ -30,7 +31,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `batch_produksi` (
   `id` int(100) NOT NULL,
+
   `id_pemesan` int(11) NOT NULL,
+
   `kode_batch` int(100) NOT NULL,
   `tgl_mulai` varchar(100) NOT NULL,
   `tgl_akhir` varchar(100) NOT NULL
@@ -159,6 +162,7 @@ INSERT INTO `pemesan` (`id`, `kode`, `ket`) VALUES
 (1, 'OH', 'Organisasi Halal'),
 (3, 'WD', 'White Dynamic');
 
+
 -- --------------------------------------------------------
 
 --
@@ -256,6 +260,7 @@ ALTER TABLE `pemesan`
 ALTER TABLE `perangkat`
   ADD PRIMARY KEY (`id`);
 
+
 --
 -- Indexes for table `serial_number`
 --
@@ -276,30 +281,35 @@ ALTER TABLE `userlist`
 -- AUTO_INCREMENT for table `batch_produksi`
 --
 ALTER TABLE `batch_produksi`
+
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `kategori_produk`
 --
 ALTER TABLE `kategori_produk`
+
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
+
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `pemesan`
 --
 ALTER TABLE `pemesan`
+
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `perangkat`
 --
 ALTER TABLE `perangkat`
+
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -313,6 +323,7 @@ ALTER TABLE `serial_number`
 --
 ALTER TABLE `userlist`
   MODIFY `idid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
