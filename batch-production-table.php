@@ -2,7 +2,7 @@
 
 <?php include('koneksi.php'); ?>
 <?php 
-	$query = mysql_query("SELECT * FROM batch_produksi LEFT JOIN pemesan on batch_produksi.id_pemesan = pemesan.id ORDER BY batch_produksi.id DESC");
+	$query = mysql_query("SELECT *, batch_produksi.id as 'id_batch' FROM batch_produksi LEFT JOIN pemesan on batch_produksi.id_pemesan = pemesan.id ORDER BY batch_produksi.id DESC");
 	$row_query = mysql_fetch_assoc($query);
 ?>
 
@@ -76,9 +76,8 @@
 													<i class="fa fa-ellipsis-h"></i>
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
-													<a class="dropdown-item" href="edit-batch-production.php?id=<?= $row_query['id'] ?>"><i class="fa fa-pencil"></i> Edit</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
+													<a class="dropdown-item" href="edit-batch-production.php?edit=<?= $row_query['id_batch'] ?>"><i class="fa fa-pencil"></i> Edit</a>
+													<a class="dropdown-item" href="batch-production-table.php?delete=<?= $row_query['id_batch'] ?>"><i class="fa fa-trash"></i> Delete</a>
 												</div>
 											</div>
 										</td>
