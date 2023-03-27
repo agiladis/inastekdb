@@ -6,6 +6,16 @@
 	<?php
 		$query = mysql_query("SELECT * FROM serial_number");
 		$row_serial_number = mysql_fetch_assoc($query);
+
+		// HANDLE DELETE
+		if (isset($_GET['delete'])) {
+			$id = $_GET['delete'];
+
+			$query_delete = mysql_query("DELETE FROM serial_number WHERE id = $id ");
+			if ($query_delete) {
+				header('Location: serial-number.php');
+			}
+		}
 	?>
 
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/jquery.dataTables.css">
@@ -70,9 +80,7 @@
 													<i class="fa fa-ellipsis-h"></i>
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
+													<a class="dropdown-item" href="serial-number.php?delete=<?= $row_serial_number['id'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
 												</div>
 											</div>
 										</td>
