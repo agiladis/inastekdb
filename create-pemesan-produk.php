@@ -67,7 +67,7 @@
                             <input class="form-control" type="text" name ="keterangan" placeholder="Keterangan">
                         </div>
                     </div>
-					<div class="clearfix">git ight">
+					<div class="clearfix">
 						<button	type="submit" name="submit" class="btn btn-primary btn-sm">Create</button>
 						<!-- <a href="list-pemesan-produk.php" class="btn btn-primary btn-sm" role="button">Create</a> -->
 						</div>
