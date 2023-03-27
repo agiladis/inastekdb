@@ -1,3 +1,15 @@
+<?php
+	include('koneksi.php');
+
+	$query_progress_incoming = "SELECT id, COUNT(id) AS 'count_incoming' FROM perangkat";
+	$result_incoming = mysql_query($query_progress_incoming);
+	$row_incoming = mysql_fetch_assoc($result_incoming);
+
+	$query_serial_number = "SELECT id, COUNT(id) AS 'count_serial_number' FROM serial_number";
+	$result_serial_number = mysql_query($query_serial_number);
+	$row_serial_number = mysql_fetch_assoc($result_serial_number);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +30,7 @@
 								</div>
 							</div>
 							<div class="project-info-right">
-								<span class="no text-blue weight-500 font-24">40</span>
+								<span class="no text-blue weight-500 font-24"><?= $row_incoming['count_incoming'];?></span>
 								<p class="weight-400 font-18">My Earnings</p>
 							</div>
 						</div>
@@ -28,7 +40,7 @@
 								<div class="col-sm-6 text-right weight-500 font-14 text-muted">40</div>
 							</div>
 							<div class="progress" style="height: 10px;">
-								<div class="progress-bar bg-blue progress-bar-striped progress-bar-animated" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								<div class="progress-bar bg-blue progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?= $row_incoming['count_incoming'];?>%;" aria-valuenow="<?= $row_incoming['count_incoming'];?>" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 						</div>
 					</div>
@@ -42,7 +54,7 @@
 								</div>
 							</div>
 							<div class="project-info-right">
-								<span class="no text-light-green weight-500 font-24">50</span>
+								<span class="no text-light-green weight-500 font-24"><?=$row_serial_number['count_serial_number'];?></span>
 								<p class="weight-400 font-18">Business Captured</p>
 							</div>
 						</div>
@@ -52,12 +64,12 @@
 								<div class="col-sm-6 text-right weight-500 font-14 text-muted">50</div>
 							</div>
 							<div class="progress" style="height: 10px;">
-								<div class="progress-bar bg-light-green progress-bar-striped progress-bar-animated" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								<div class="progress-bar bg-light-green progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?=$row_serial_number['count_serial_number'];?>%;" aria-valuenow="<?=$row_serial_number['count_serial_number'];?>" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+				<!-- <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
 					<div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
 						<div class="project-info clearfix">
 							<div class="project-info-left">
@@ -104,7 +116,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="bg-white pd-20 box-shadow border-radius-5 mb-30">
 				<h4 class="mb-30">Area Spline Chart</h4>
