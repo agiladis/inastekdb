@@ -5,8 +5,8 @@
 	<?php include('koneksi.php'); ?>
 	<?php 
         // GET OLD DATA
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
+        if (isset($_GET['edit'])) {
+            $id = $_GET['edit'];
 
             $query_get = mysql_query("SELECT * FROM batch_produksi WHERE id = $id ");
             $row_edit = mysql_fetch_assoc($query_get);
