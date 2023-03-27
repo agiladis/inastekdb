@@ -1,5 +1,4 @@
 <?php
-include('koneksi.php');
 		session_start();
 		//cek apakah user sudah login
 		if(!isset($_SESSION['user'])){
