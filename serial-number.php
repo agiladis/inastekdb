@@ -4,7 +4,7 @@
 	<?php include('include/head.php'); ?>
 	<?php include('koneksi.php'); ?>
 	<?php
-		$query = mysql_query("SELECT * FROM serial_number");
+		$query = mysql_query("SELECT * FROM serial_number ORDER BY id DESC");
 		$row_serial_number = mysql_fetch_assoc($query);
 
 		// HANDLE DELETE
