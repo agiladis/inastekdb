@@ -32,14 +32,10 @@
 							</div>
 							<div class="project-info-right">
 								<span class="no text-blue weight-500 font-24"><?= $row_incoming['count_incoming'];?></span>
-								<p class="weight-400 font-18">My Earnings</p>
+								<p class="weight-400 font-18">Incoming Components</p>
 							</div>
 						</div>
 						<div class="project-info-progress">
-							<div class="row clearfix">
-								<div class="col-sm-6 text-muted weight-500">Target</div>
-								<div class="col-sm-6 text-right weight-500 font-14 text-muted">40</div>
-							</div>
 							<div class="progress" style="height: 10px;">
 								<div class="progress-bar bg-blue progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?= $row_incoming['count_incoming'];?>%;" aria-valuenow="<?= $row_incoming['count_incoming'];?>" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
@@ -56,14 +52,10 @@
 							</div>
 							<div class="project-info-right">
 								<span class="no text-light-green weight-500 font-24"><?=$row_serial_number['count_serial_number'];?></span>
-								<p class="weight-400 font-18">Business Captured</p>
+								<p class="weight-400 font-18">Serial Number Created</p>
 							</div>
 						</div>
 						<div class="project-info-progress">
-							<div class="row clearfix">
-								<div class="col-sm-6 text-muted weight-500">Target</div>
-								<div class="col-sm-6 text-right weight-500 font-14 text-muted">50</div>
-							</div>
 							<div class="progress" style="height: 10px;">
 								<div class="progress-bar bg-light-green progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?=$row_serial_number['count_serial_number'];?>%;" aria-valuenow="<?=$row_serial_number['count_serial_number'];?>" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
