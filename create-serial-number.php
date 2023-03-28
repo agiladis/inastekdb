@@ -3,20 +3,6 @@
 <head>
 	<?php include('include/head.php'); ?>
     <?php include('koneksi.php'); ?>
-    <?php
-        // GET LAST KODE NOMOR FOR INCREMENT
-        $query_kode = mysql_query("SELECT * FROM serial_number ORDER BY id DESC LIMIT 1");
-        if (mysql_num_rows($query_kode) > 0) {
-            // if any data get last digit increment
-            $row_kode = mysql_fetch_assoc($query_kode);
-            $last_digit_kode_nomor = intval(substr($row_kode["serial_number"], -4));
-            $number = sprintf('%04d', $last_digit_kode_nomor + 1);
-        } else {
-            // if no data exist
-            $last_digit_kode_nomor = 0001;   
-            $number = sprintf('%04d', $last_digit_kode_nomor);
-        }
-    ?>
 </head>
 <body>
 	<?php include('include/header.php'); ?>
@@ -64,8 +50,9 @@
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Product Category</label>
                             <div class="col-sm-12 col-md-10">
-                                <select name="kategori_produk" class="custom-select col-12">
-                                    <option selected="">Choose...</option>
+                                <select id="kategori_produk" name="kategori_produk" class="custom-select col-12" onchange="selectCategory()">
+                                <!-- <select id="kategori_produk" name="kategori_produk" class="custom-select col-12" onchange="changeData(this.value);"> -->
+                                    <option selected="" value="">Choose...</option>
                                     <?php 
 										// GET kode kategori FROM TBL kategori_produk
 										$query_category = mysql_query("SELECT * FROM kategori_produk");
@@ -79,8 +66,8 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Kode Nomor</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input name="kode_nomor" class="form-control" type="text" value="<?= $number ?>" readonly>
+                            <div id="debug" class="col-sm-12 col-md-10">
+                                <input name="kode_nomor" class="form-control" type="text" value="0001" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -145,5 +132,7 @@
 		</div>
 	</div>
 	<?php include('include/script.php'); ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="request-by-category.js"></script>
 </body>
 </html>
