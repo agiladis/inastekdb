@@ -19,6 +19,9 @@
 	
 
 ?>
+
+</script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,7 +92,9 @@
 											<div class="dropdown-menu dropdown-menu-right">
 												<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
 												<a class="dropdown-item" href="edit-pemesan-produk.php?edit=<?=$row['id']?>&table=<?= $t++?>"><i class="fa fa-pencil"></i> Edit</a>
-												<a class="dropdown-item" href="list-pemesan-produk.php?delete=<?=$row['id']?>"><i class="fa fa-trash"></i> Delete</a>
+												<a class="dropdown-item" href="list-pemesan-produk.php?delete=<?=$row['id']?>"  onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
+
+												<!-- <a class="dropdown-item" href="list-pemesan-produk.php?delete=<?=$row['id']?>"><i class="fa fa-trash"></i> Delete</a> -->
 											</div>
 										</div>
 									</td>
