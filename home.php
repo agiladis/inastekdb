@@ -35,11 +35,7 @@
 								<p class="weight-400 font-18">Incoming Components</p>
 							</div>
 						</div>
-						<div class="project-info-progress">
-							<div class="progress" style="height: 10px;">
-								<div class="progress-bar bg-blue progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?= $row_incoming['count_incoming'];?>%;" aria-valuenow="<?= $row_incoming['count_incoming'];?>" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-12 mb-30">
@@ -55,11 +51,7 @@
 								<p class="weight-400 font-18">Serial Number Created</p>
 							</div>
 						</div>
-						<div class="project-info-progress">
-							<div class="progress" style="height: 10px;">
-								<div class="progress-bar bg-light-green progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?=$row_serial_number['count_serial_number'];?>%;" aria-valuenow="<?=$row_serial_number['count_serial_number'];?>" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<!-- <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
