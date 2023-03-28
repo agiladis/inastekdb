@@ -3,6 +3,7 @@
 <head>
 	<?php include('include/head.php'); ?>
 	<?php include('koneksi.php'); ?>
+	<?php include('/vendors/lib/phpqrcode/qrlib.php');?>
 	<?php
 		// GENERATE SERIAL NUMBER
 
@@ -64,8 +65,11 @@
 							<h4><?= $serial_number ?></h4>
 						</div>
 					</div>
-                    <div class="width-50-p container">
-                        <img src="images/qr.jpeg" id="media" alt="">
+                    <div class="width-50-p container text-center">
+						<?php
+						QRcode::png($serial_number,"E:/xampp/htdocs/inastekdb/qrimage/$serial_number.png", QR_ECLEVEL_H, 10);
+						echo '<img src="qrimage/'.$serial_number.'.png">';
+						?>
                     </div>
 					<div class="footer-wrap pd-20 mb-20">
 						<h4>Serial Number: <?= $serial_number ?> </h4>
