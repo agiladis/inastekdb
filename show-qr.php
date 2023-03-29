@@ -3,7 +3,6 @@
 <head>
 	<?php include('include/head.php'); ?>
 	<?php include('koneksi.php'); ?>
-	<?php include('/vendors/lib/phpqrcode/qrlib.php');?>
 	<?php
 		// GENERATE SERIAL NUMBER
 
@@ -28,7 +27,7 @@
 
 		$serial_number = $kode_pemesan . "-" . $kode_kategori . "-" . $kode_batch . "-" . $kode_nomor;
 
-		$query_insert = mysql_query("INSERT INTO serial_number (id_kategori, serial_number, LCD, PCB, LOADCELL) VALUES ('$id_kategori_produk', '$serial_number', '$LCD', '$PCB', '$LOADCELL')");
+		$query_insert = mysql_query("INSERT INTO serial_number (serial_number, LCD, PCB, LOADCELL) VALUES ('$serial_number', '$LCD', '$PCB', '$LOADCELL')");
 
 		if(!$query_insert) {
 			header("Location: create-serial-number.php?generate=failed");
@@ -65,11 +64,8 @@
 							<h4><?= $serial_number ?></h4>
 						</div>
 					</div>
-                    <div class="width-50-p container text-center">
-						<?php
-						QRcode::png($serial_number,"E:/xampp/htdocs/inastekdb/qrimage/$serial_number.png", QR_ECLEVEL_H, 10);
-						echo '<img src="qrimage/'.$serial_number.'.png">';
-						?>
+                    <div class="width-50-p container">
+                        <img src="images/qr.jpeg" id="media" alt="">
                     </div>
 					<div class="footer-wrap pd-20 mb-20">
 						<h4>Serial Number: <?= $serial_number ?> </h4>
