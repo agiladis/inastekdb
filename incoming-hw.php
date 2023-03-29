@@ -1,5 +1,11 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+	date_default_timezone_set("Asia/Jakarta");
+	$date = date('d F Y ', time());
+
 if(isset($_POST['register'])){
 	require_once("koneksi.php");
 	$tgl = $_POST['tgl'];
@@ -119,7 +125,7 @@ if(isset($_POST['sdelete'])){
 					<div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Tanggal Kedatangan</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control date-picker" placeholder="Select Date" name="tgl">
+                            <input class="form-control date-picker" value="<?= $date;?>" name="tgl">
                         </div>
                     </div>
                     
