@@ -133,6 +133,6 @@
 	</div>
 	<?php include('include/script.php'); ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="request-by-category.js"></script>
+    <script src="./vendors/scripts/request-by-category.js"></script>
 </body>
 </html>
