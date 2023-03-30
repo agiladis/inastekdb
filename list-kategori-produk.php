@@ -72,11 +72,17 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php	
+									if (mysql_num_rows($result) == 0){
+								?>
+								<tr>
+									<td colspan="4" class="text-center font-weight-bold font-italic">It's empty in here.</td>
+								</tr>
 								<?php
-								$i=1;
-								$t=1;	
-								if (mysql_num_rows($result) == 0){
-								}else{  do  { ?>
+									} else{  
+										$i=1;
+										$t=1;do  { 
+								?>
 								<tr>
 									<td class="table-plus"><?= $i++; ?></td>
 									<td><?= $row['kode']?></td>

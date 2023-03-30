@@ -69,7 +69,11 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php $i=1; do { 
+								<?php if (mysql_num_rows($query) == 0) : ?>
+									<tr>
+										<td colspan="4" class="text-center font-weight-bold font-italic">It's empty in here.</td>
+									</tr>
+								<?php else: $i=1; do { 
 									//Menganbil data LCD
 									$id_lcd = $row_serial_number['LCD'];
 									$query_lcd= mysql_query("SELECT * FROM perangkat WHERE id = $id_lcd"); 
@@ -103,7 +107,7 @@
 											</div>
 										</td>
 									</tr>
-								<?php } while ($row_serial_number = mysql_fetch_assoc($query)); ?>
+								<?php } while ($row_serial_number = mysql_fetch_assoc($query)); endif ?>
 							</tbody>
 						</table>
 					</div>

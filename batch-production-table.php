@@ -71,7 +71,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php 
+								<?php if (mysql_num_rows($query) == 0) : ?>
+									<tr>
+										<td colspan="4" class="text-center font-weight-bold font-italic">It's empty in here.</td>
+									</tr>
+								<?php
+									else:
 									$i=1; do {
 								?>
 									<tr>
@@ -92,7 +97,7 @@
 											</div>
 										</td>
 									</tr>
-								<?php } while ($row_query = mysql_fetch_assoc($query)); ?>
+								<?php } while ($row_query = mysql_fetch_assoc($query)); endif ?>
 							</tbody>
 						</table>
 					</div>
