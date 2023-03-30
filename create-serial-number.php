@@ -30,19 +30,19 @@
 				</div>
 				<!-- Default Basic Forms Start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<form method="POST" action="show-qr.php" >
+					<form method="POST" action="show-qr.php" autocomplete="off">
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Production Batch</label>
                             <div class="col-sm-12 col-md-10">
-                                <select name="batch_produksi" class="custom-select col-12">
-                                    <option selected="">Choose...</option>
+                                <select id="batch-produksi" name="batch_produksi" class="custom-select col-12" onchange="selectCategory()">
+                                    <option selected="" value="0">Choose...</option>
                                     <?php 
 										// GET ID PEMESAN FROM TBL BATCH_PRODUKSI
-										$query_produksi = mysql_query("SELECT * FROM batch_produksi");
+										$query_produksi = mysql_query("SELECT *, batch_produksi.id AS 'id_batch_produksi' FROM batch_produksi LEFT JOIN pemesan ON batch_produksi.id_pemesan = pemesan.id");
 										$data_produksi = mysql_fetch_assoc($query_produksi);
 										do {										
 									?>
-										<option value="<?= $data_produksi['id']; ?>" ><?=$data_produksi['kode_batch']; ?></option>
+										<option value="<?= $data_produksi['id_batch_produksi']; ?>" ><?=$data_produksi['kode_batch'] . " - [" . $data_produksi['kode'] . "] " . $data_produksi['ket']; ?></option>
 									<?php } while($data_produksi = mysql_fetch_assoc($query_produksi)); ?>
                                 </select>
                             </div>
@@ -50,9 +50,9 @@
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Product Category</label>
                             <div class="col-sm-12 col-md-10">
-                                <select id="kategori_produk" name="kategori_produk" class="custom-select col-12" onchange="selectCategory()">
+                                <select id="kategori-produk" name="kategori_produk" class="custom-select col-12" onchange="selectCategory()">
                                 <!-- <select id="kategori_produk" name="kategori_produk" class="custom-select col-12" onchange="changeData(this.value);"> -->
-                                    <option selected="" value="">Choose...</option>
+                                    <option selected="" value="0">Choose...</option>
                                     <?php 
 										// GET kode kategori FROM TBL kategori_produk
 										$query_category = mysql_query("SELECT * FROM kategori_produk");

@@ -18,6 +18,16 @@
 				header("Location: create-batch-production.php?create=failed");
 			}
 		}
+
+		// GET LAST BATCH NUMBER
+		$query_batch = mysql_query("SELECT * FROM batch_produksi ORDER BY id DESC LIMIT 1");
+		$row_batch = mysql_fetch_assoc($query_batch);
+
+		if (mysql_num_rows($query_batch)) {
+			$batch_number = $row_batch['kode_batch'] + 1;
+		} else {
+			$batch_number = 1;
+		}
 	?>
 </head>
 <body>
@@ -46,7 +56,7 @@
 				</div>
 				<!-- Default Basic Forms Start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<form action="" method="POST">
+					<form action="" method="POST" autocomplete="off">
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Pemesan Produk</label>
 							<div class="col-sm-12 col-md-10">
@@ -66,7 +76,7 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Batch Code</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" name="kode_batch" placeholder="Code" type="number">
+								<input class="form-control" name="kode_batch" value="<?= $batch_number ?>" placeholder="Code" type="number" readonly>
 							</div>
 						</div>
 						<div class="form-group row">
