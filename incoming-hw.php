@@ -80,7 +80,7 @@ if(isset($_POST['sdelete'])){
 							<p></p>
 						</div>
 					</div>
-					<form method="POST">
+					<form method="POST" autocomplete="off">
 					<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Jenis Barang</label>
 							<div class="col-sm-12 col-md-10">
