@@ -61,6 +61,7 @@
 							<label class="col-sm-12 col-md-2 col-form-label">Pemesan Produk</label>
 							<div class="col-sm-12 col-md-10">
 								<select id="id_pemesan" name="id_pemesan" class="custom-select col-12" onchange="selectPemesan()">
+
 									<option selected="">Choose...</option>
 									<?php 
 										// GET ID PEMESAN FROM TBL PEMESAN
@@ -108,5 +109,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./vendors/scripts/request-by-category.js"></script>
 	<?php include('include/script.php'); ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./vendors/scripts/request-by-category.js"></script>
 </body>
 </html>

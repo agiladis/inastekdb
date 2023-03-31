@@ -30,7 +30,7 @@
 		$query_insert = mysql_query("INSERT INTO serial_number (id_batch, id_kategori, serial_number, LCD, PCB, LOADCELL) VALUES ('$id_batch_produksi', '$id_kategori_produk', '$serial_number', '$LCD', '$PCB', '$LOADCELL')");
 
 		if(!$query_insert) {
-			header("Location: create-serial-number.php?generate=failed");
+			header("Location: create-serial-number.php?generate=$query_insert");
 		}
 	?>
 </head>
