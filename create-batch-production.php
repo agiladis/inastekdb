@@ -50,8 +50,8 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Pemesan Produk</label>
 							<div class="col-sm-12 col-md-10">
-								<select name="id_pemesan" class="custom-select col-12">
-									<option selected>Choose...</option>
+								<select id= "id_pemesan" name="id_pemesan" class="custom-select col-12" onchange="selectPemesan()">
+									<option selected="">Choose...</option>
 									<?php 
 										// GET ID PEMESAN FROM TBL PEMESAN
 										$query_pemesan = mysql_query("SELECT * FROM pemesan");
@@ -65,8 +65,8 @@
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Batch Code</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" name="kode_batch" placeholder="Code" type="number">
+							<div id="nomor_batch" class="col-sm-12 col-md-10">
+								<input class="form-control" name="kode_batch" type="text" readonly>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -94,5 +94,7 @@
 		</div>
 	</div>
 	<?php include('include/script.php'); ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./vendors/scripts/request-by-category.js"></script>
 </body>
 </html>

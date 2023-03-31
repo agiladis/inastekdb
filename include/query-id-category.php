@@ -2,9 +2,10 @@
     include('../koneksi.php');
 
     $id_kategori = $_POST['id'];
+    $id_batch = $_POST['id_batch'];
 
     // GET LAST KODE NOMOR FOR INCREMENT
-    $query_kode = mysql_query("SELECT * FROM serial_number WHERE id_kategori = $id_kategori ORDER BY id DESC LIMIT 1");
+    $query_kode = mysql_query("SELECT * FROM serial_number WHERE id_kategori = $id_kategori AND id_batch = $id_batch ORDER BY id DESC LIMIT 1");
     if (mysql_num_rows($query_kode) > 0) {
         // if any data get last digit increment
         $row_kode = mysql_fetch_assoc($query_kode);
