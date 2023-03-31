@@ -40,7 +40,7 @@
 										// GET ID PEMESAN FROM TBL BATCH_PRODUKSI
 										$query_produksi = mysql_query("SELECT *, batch_produksi.id AS 'id_batch_produksi' FROM batch_produksi LEFT JOIN pemesan ON batch_produksi.id_pemesan = pemesan.id");
 										$data_produksi = mysql_fetch_assoc($query_produksi);
-										do {										
+										do {
 									?>
 										<option value="<?= $data_produksi['id_batch_produksi']; ?>" ><?=$data_produksi['kode_batch'] . " - [" . $data_produksi['kode'] . "] " . $data_produksi['ket']; ?></option>
 									<?php } while($data_produksi = mysql_fetch_assoc($query_produksi)); ?>

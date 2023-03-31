@@ -1,8 +1,6 @@
 function selectCategory() {
     let idCategory = document.querySelector("#kategori-produk").value;
     let kodeBatch = document.querySelector("#batch-produksi").value;
-    
-    console.log(idCategory);
 
     $.ajax({
         url: "include/query-id-category.php",
@@ -12,8 +10,20 @@ function selectCategory() {
             kode_batch: kodeBatch,
         },
         success: function(data) {
-            // $('#kode-nomor-container').html(data);
             $('#conditional-form').html(data);
         }
     })
 }
+
+function selectPemesan() {
+    let idPemesan = document.querySelector("#id_pemesan").value;
+  
+    $.ajax({
+      url: "include/query-id-pemesan.php",
+      method: "POST",
+      data: { id_pemesan: idPemesan },
+      success: function (data) {
+        $("#nomor_batch").html(data);
+      },
+    });
+  }
