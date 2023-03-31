@@ -49,8 +49,8 @@
 </div>
 <div class="form-group row">
     <label class="col-sm-12 col-md-2 col-form-label">PCB</label>
-    <div id="select-option-pcb-container" class="col-sm-12 col-md-10">
-        <select id="kategori-pcb" name="PCB" class="custom-select col-12">
+    <div class="col-sm-12 col-md-10">
+        <select name="PCB" class="custom-select col-12">
             <option selected>Choose...</option>
             <?php 
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "PCB"
@@ -69,13 +69,13 @@
 <div class="form-group row">
     <label class="col-sm-12 col-md-2 col-form-label">Load Cell</label>
     <div class="col-sm-12 col-md-10">
-        <select name="LOADCELL" class="custom-select col-12">
+        <select id="asik" name="LOADCELL" class="custom-select col-12">
             <option selected>Choose...</option>
             <?php 
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "LOADCELL"
                 $query_perangkat_loadcell = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%LOADCELL-$category_code%'");
                 $data_loadcell = mysql_fetch_assoc($query_perangkat_loadcell);
-                if (mysql_num_rows($query_perangkat_loadcell > 0)) :
+                if (mysql_num_rows($query_perangkat_loadcell) > 0) :
                 do {										
             ?>
                 <option value="<?= $data_loadcell['id']; ?>" ><?= $data_loadcell['nama_perangkat'] . ", " . "Batch-" . $data_loadcell['no_batch'] . ", Kardus-" . $data_loadcell['no_kardus']; ?></option>
