@@ -1,19 +1,26 @@
 function selectCategory() {
-    let idCategory = document.querySelector("#kategori-produk").value;
-    let kodeBatch = document.querySelector("#batch-produksi").value;
-    
-    console.log(idCategory);
+  let idBatch = document.querySelector("#batch_produksi").value;
+  let idCategory = document.querySelector("#kategori_produk").value;
 
-    $.ajax({
-        url: "include/query-id-category.php",
-        method: "POST",
-        data: {
-            id_kategori: idCategory, 
-            kode_batch: kodeBatch,
-        },
-        success: function(data) {
-            // $('#kode-nomor-container').html(data);
-            $('#conditional-form').html(data);
-        }
-    })
+  $.ajax({
+    url: "include/query-id-category.php",
+    method: "POST",
+    data: { id: idCategory, id_batch: idBatch },
+    success: function (data) {
+      $("#debug").html(data);
+    },
+  });
+}
+
+function selectPemesan() {
+  let idPemesan = document.querySelector("#id_pemesan").value;
+
+  $.ajax({
+    url: "include/query-id-pemesan.php",
+    method: "POST",
+    data: { id_pemesan: idPemesan },
+    success: function (data) {
+      $("#nomor_batch").html(data);
+    },
+  });
 }

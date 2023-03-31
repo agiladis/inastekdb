@@ -34,15 +34,25 @@
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Production Batch</label>
                             <div class="col-sm-12 col-md-10">
+
                                 <select id="batch-produksi" name="batch_produksi" class="custom-select col-12" onchange="selectCategory()">
+
                                     <option selected="" value="0">Choose...</option>
                                     <?php 
+										
 										// GET ID PEMESAN FROM TBL BATCH_PRODUKSI
 										$query_produksi = mysql_query("SELECT *, batch_produksi.id AS 'id_batch_produksi' FROM batch_produksi LEFT JOIN pemesan ON batch_produksi.id_pemesan = pemesan.id");
 										$data_produksi = mysql_fetch_assoc($query_produksi);
 										do {										
 									?>
-										<option value="<?= $data_produksi['id_batch_produksi']; ?>" ><?=$data_produksi['kode_batch'] . " - [" . $data_produksi['kode'] . "] " . $data_produksi['ket']; ?></option>
+
+										<option value="<?= $data_produksi['id']; ?>" ><?php echo $data_produksi['kode_batch']; 
+										$id_pemesan = $data_produksi['id_pemesan'];
+										//GET KODE Pemesan from table pemesan
+										$query_pemesan = mysql_query("SELECT * FROM pemesan WHERE id = $id_pemesan");
+										$data_pemesan = mysql_fetch_assoc($query_pemesan);
+										echo '   - '.$data_pemesan['ket'];
+										?></option>
 									<?php } while($data_produksi = mysql_fetch_assoc($query_produksi)); ?>
                                 </select>
                             </div>
