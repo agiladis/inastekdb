@@ -3,8 +3,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+<<<<<<< HEAD
 	date_default_timezone_set("Asia/Jakarta");
 	$date = date('d F Y ', time());
+=======
+// Default Date now
+date_default_timezone_set("Asia/Jakarta");
+$date = date('d F Y ', time());
+>>>>>>> dc8c1b4 (CHECKED EVERYTHING UP TO DATE AND OK)
 
 if(isset($_POST['register'])){
 	require_once("koneksi.php");
@@ -125,7 +131,11 @@ if(isset($_POST['sdelete'])){
 					<div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Tanggal Kedatangan</label>
                         <div class="col-sm-12 col-md-10">
+<<<<<<< HEAD
                             <input class="form-control date-picker" value="<?= $date;?>" name="tgl">
+=======
+							<input class="form-control date-picker" value="<?= $date;?>" name="tgl">
+>>>>>>> dc8c1b4 (CHECKED EVERYTHING UP TO DATE AND OK)
                         </div>
                     </div>
                     
