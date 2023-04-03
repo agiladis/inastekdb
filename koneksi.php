@@ -1,5 +1,6 @@
 <?php
 $hostname  = "localhost";
+
 // $username  = "inastekdb1";
 $username  = "root";
 // $password  = "InamasTekdb1";

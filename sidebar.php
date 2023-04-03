@@ -32,8 +32,8 @@
 						</a>
 						<ul class="submenu">
 							<li class="dropdown">
-								<a href="serial-number.php" class="dropdown-toggle no-arrow">
-									<span class="fa fa-barcode"></span><span class="mtext">List Serial Number</span>
+								<a href="create-serial-number.php" class="dropdown-toggle no-arrow">
+									<span class="fa fa-barcode"></span><span class="mtext">Create Serial Number</span>
 								</a>
 							</li>
 							<li class="dropdown">

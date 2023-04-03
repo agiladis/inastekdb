@@ -3,20 +3,6 @@
 <head>
 	<?php include('include/head.php'); ?>
     <?php include('koneksi.php'); ?>
-    <?php
-        // GET LAST KODE NOMOR FOR INCREMENT
-        $query_kode = mysql_query("SELECT * FROM serial_number ORDER BY id DESC LIMIT 1");
-        if (mysql_num_rows($query_kode) > 0) {
-            // if any data get last digit increment
-            $row_kode = mysql_fetch_assoc($query_kode);
-            $last_digit_kode_nomor = intval(substr($row_kode["serial_number"], -4));
-            $number = sprintf('%04d', $last_digit_kode_nomor);
-        } else {
-            // if no data exist
-            $last_digit_kode_nomor = 0001;   
-            $number = sprintf('%04d', $last_digit_kode_nomor);
-        }
-    ?>
 </head>
 <body>
 	<?php include('include/header.php'); ?>
@@ -44,19 +30,29 @@
 				</div>
 				<!-- Default Basic Forms Start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-					<form method="POST" action="show-qr.php" >
+					<form method="POST" action="show-qr.php" autocomplete="off">
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Production Batch</label>
                             <div class="col-sm-12 col-md-10">
-                                <select name="batch_produksi" class="custom-select col-12">
-                                    <option selected="">Choose...</option>
+
+                                <select id="batch-produksi" name="batch_produksi" class="custom-select col-12" onchange="selectCategory()">
+
+                                    <option selected="" value="0">Choose...</option>
                                     <?php 
+										
 										// GET ID PEMESAN FROM TBL BATCH_PRODUKSI
-										$query_produksi = mysql_query("SELECT * FROM batch_produksi");
+										$query_produksi = mysql_query("SELECT *, batch_produksi.id AS 'id_batch_produksi' FROM batch_produksi LEFT JOIN pemesan ON batch_produksi.id_pemesan = pemesan.id");
 										$data_produksi = mysql_fetch_assoc($query_produksi);
-										do {										
+										do {
 									?>
-										<option value="<?= $data_produksi['id']; ?>" ><?=$data_produksi['kode_batch']; ?></option>
+
+										<option value="<?= $data_produksi['id']; ?>" ><?php echo $data_produksi['kode_batch']; 
+										$id_pemesan = $data_produksi['id_pemesan'];
+										//GET KODE Pemesan from table pemesan
+										$query_pemesan = mysql_query("SELECT * FROM pemesan WHERE id = $id_pemesan");
+										$data_pemesan = mysql_fetch_assoc($query_pemesan);
+										echo '   - '.$data_pemesan['ket'];
+										?></option>
 									<?php } while($data_produksi = mysql_fetch_assoc($query_produksi)); ?>
                                 </select>
                             </div>
@@ -64,8 +60,9 @@
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Product Category</label>
                             <div class="col-sm-12 col-md-10">
-                                <select name="kategori_produk" class="custom-select col-12">
-                                    <option selected="">Choose...</option>
+                                <select id="kategori-produk" name="kategori_produk" class="custom-select col-12" onchange="selectCategory()">
+                                <!-- <select id="kategori_produk" name="kategori_produk" class="custom-select col-12" onchange="changeData(this.value);"> -->
+                                    <option selected="" value="0">Choose...</option>
                                     <?php 
 										// GET kode kategori FROM TBL kategori_produk
 										$query_category = mysql_query("SELECT * FROM kategori_produk");
@@ -77,60 +74,46 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Kode Nomor</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input name="kode_nomor" class="form-control" type="text" value="<?= $number ?>" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">LCD</label>
-                            <div class="col-sm-12 col-md-10">
-                                <select name="LCD" class="custom-select col-12">
-                                    <option selected>Choose...</option>
-                                    <?php 
-										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
-										$query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = 'LCD'");
-										$data_lcd = mysql_fetch_assoc($query_perangkat_lcd);
-										do {										
-									?>
-										<option value="<?= $data_lcd['id']; ?>" ><?="Batch-" . $data_lcd['no_batch'] . ", Kardus-" . $data_lcd['no_kardus']; ?></option>
-									<?php } while($data_lcd = mysql_fetch_assoc($query_perangkat_lcd)); ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">PCB</label>
-                            <div class="col-sm-12 col-md-10">
-                                <select name="PCB" class="custom-select col-12">
-                                    <option selected>Choose...</option>
-                                    <?php 
-										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "PCB"
-										$query_perangkat_pcb = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = 'PCB'");
-										$data_pcb = mysql_fetch_assoc($query_perangkat_pcb);
-										do {										
-									?>
-										<option value="<?= $data_pcb['id']; ?>" ><?="Batch-" . $data_pcb['no_batch'] . ", Kardus-" . $data_pcb['no_kardus']; ?></option>
-									<?php } while($data_pcb = mysql_fetch_assoc($query_perangkat_pcb)); ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Load Cell</label>
-                            <div class="col-sm-12 col-md-10">
-                                <select name="LOADCELL" class="custom-select col-12">
-                                    <option selected>Choose...</option>
-                                    <?php 
-										// GET ID perangkat FROM TBL perangkat WHERE perangkat = "LOADCELL"
-										$query_perangkat_loadcell = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat = 'LOADCELL'");
-										$data_loadcell = mysql_fetch_assoc($query_perangkat_loadcell);
-										do {										
-									?>
-										<option value="<?= $data_loadcell['id']; ?>" ><?="Batch-" . $data_loadcell['no_batch'] . ", Kardus-" . $data_loadcell['no_kardus']; ?></option>
-									<?php } while($data_loadcell = mysql_fetch_assoc($query_perangkat_loadcell)); ?>
-                                </select>
-                            </div>
-                        </div>
+                        <div id="conditional-form">
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Kode Nomor</label>
+								<div id="kode-nomor-container" class="col-sm-12 col-md-10">
+									<input name="kode_nomor" class="form-control" type="text" value="0001" readonly>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">LCD</label>
+								<div class="col-sm-12 col-md-10">
+									<select name="LCD" class="custom-select col-12">
+										<option selected>Choose...</option>
+										<?php 
+											// GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
+											$query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%'");
+											$data_lcd = mysql_fetch_assoc($query_perangkat_lcd);
+											do {										
+										?>
+											<option value="<?= $data_lcd['id']; ?>" ><?= $data_lcd['nama_perangkat'] . ", " . "Batch-" . $data_lcd['no_batch'] . ", Kardus-" . $data_lcd['no_kardus']; ?></option>
+										<?php } while($data_lcd = mysql_fetch_assoc($query_perangkat_lcd)); ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">PCB</label>
+								<div class="col-sm-12 col-md-10">
+									<select name="PCB" class="custom-select col-12">
+										<option selected>Select product category first</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Load Cell</label>
+								<div class="col-sm-12 col-md-10">
+									<select name="LOADCELL" class="custom-select col-12">
+										<option selected>Select product category first</option>
+									</select>
+								</div>
+							</div>
+						</div>
                         <div class="clearfix">
                             <div class="pull-right">
                                 <!-- <a href="show-qr.php" type="submit" class="btn btn-primary btn-sm" role="button">Create</a> -->
@@ -144,6 +127,8 @@
 			<?php include('include/footer.php'); ?>
 		</div>
 	</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./vendors/scripts/request-by-category.js"></script>
 	<?php include('include/script.php'); ?>
 </body>
 </html>

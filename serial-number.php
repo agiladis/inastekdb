@@ -4,8 +4,18 @@
 	<?php include('include/head.php'); ?>
 	<?php include('koneksi.php'); ?>
 	<?php
-		$query = mysql_query("SELECT * FROM serial_number");
+		$query = mysql_query("SELECT * FROM serial_number ORDER BY id DESC");
 		$row_serial_number = mysql_fetch_assoc($query);
+
+		// HANDLE DELETE
+		if (isset($_GET['delete'])) {
+			$id = $_GET['delete'];
+
+			$query_delete = mysql_query("DELETE FROM serial_number WHERE id = $id ");
+			if ($query_delete) {
+				header('Location: serial-number.php');
+			}
+		}
 	?>
 
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/media/css/jquery.dataTables.css">
@@ -59,25 +69,45 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php $i=1; do { ?>
+								<?php if (mysql_num_rows($query) == 0) : ?>
+									<tr>
+										<td colspan="4" class="text-center font-weight-bold font-italic">It's empty in here.</td>
+									</tr>
+								<?php else: $i=1; do { 
+									//Menganbil data LCD
+									$id_lcd = $row_serial_number['LCD'];
+									$query_lcd= mysql_query("SELECT * FROM perangkat WHERE id = $id_lcd"); 
+									$row_lcd = mysql_fetch_assoc($query_lcd); 
+									
+									//Mengambil data PCB
+									$id_pcb = $row_serial_number['PCB'];
+									$query_PCB= mysql_query("SELECT * FROM perangkat WHERE id = $id_pcb"); 
+									$row_pcb = mysql_fetch_assoc($query_PCB);
+
+									//Mengambil data LoadCell
+									$id_loadcell = $row_serial_number['LOADCELL'];
+									$query_loadcell= mysql_query("SELECT * FROM perangkat WHERE id = $id_loadcell"); 
+									$row_loadcell = mysql_fetch_assoc($query_loadcell);
+									?>
 									<tr>
 										<td class="table-plus"><?= $i++ ?></td>
 										<td><?= $row_serial_number['serial_number']; ?></td>
-										<td><?= "LCD : " . $row_serial_number['LCD'] . "</br>PCB : " . $row_serial_number['PCB'] . "</br>LOADCELL : " . $row_serial_number['LOADCELL']; ?></td>
+
+										<td><?= "LCD : Batch-".$row_lcd['no_batch']. "  Kardus-". $row_lcd['no_kardus'] . "  tgl (". $row_lcd['tgl_datang'].")". 
+										"</br>PCB : Batch-".$row_pcb['no_batch']."  Kardus-".$row_pcb['no_kardus'] ."  tgl (". $row_pcb['tgl_datang'] . ")".
+										"</br>LOADCELL : Batch-".$row_loadcell['no_batch']. "  Kardus-". $row_loadcell['no_kardus']. " tgl (". $row_loadcell['tgl_datang']."0" ; ?></td>
 										<td>
 											<div class="dropdown">
 												<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 													<i class="fa fa-ellipsis-h"></i>
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-eye"></i> View</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
+													<a class="dropdown-item" href="serial-number.php?delete=<?= $row_serial_number['id'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
 												</div>
 											</div>
 										</td>
 									</tr>
-								<?php } while ($row_serial_number = mysql_fetch_assoc($query)); ?>
+								<?php } while ($row_serial_number = mysql_fetch_assoc($query)); endif ?>
 							</tbody>
 						</table>
 					</div>
