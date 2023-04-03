@@ -92,7 +92,7 @@
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
 													<a class="dropdown-item" href="edit-batch-production.php?edit=<?= $row_query['id_batch'] ?>"><i class="fa fa-pencil"></i> Edit</a>
-													<a class="dropdown-item" href="batch-production-table.php?delete=success?delete=<?= $row_query['id_batch'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
+													<a class="dropdown-item" href="batch-production-table.php?delete=<?= $row_query['id_batch'] ?>" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i> Delete</a>
 												</div>
 											</div>
 										</td>

@@ -35,7 +35,7 @@
     <label class="col-sm-12 col-md-2 col-form-label">LCD</label>
     <div class="col-sm-12 col-md-10">
         <select name="LCD" class="custom-select col-12">
-            <option selected>Choose...</option>
+            <option selected value="0">Choose...</option>
             <?php 
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
                 $query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%'");
@@ -51,7 +51,7 @@
     <label class="col-sm-12 col-md-2 col-form-label">PCB</label>
     <div class="col-sm-12 col-md-10">
         <select name="PCB" class="custom-select col-12">
-            <option selected>Choose...</option>
+            <option selected value="0">Choose...</option>
             <?php 
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "PCB"
                 $query_perangkat_pcb = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%PCB-$category_code%'");
@@ -61,7 +61,7 @@
             ?>
                 <option value="<?= $data_pcb['id']; ?>" ><?= $data_pcb['nama_perangkat'] . ", " . "Batch-" . $data_pcb['no_batch'] . ", Kardus-" . $data_pcb['no_kardus']; ?></option>
             <?php } while($data_pcb = mysql_fetch_assoc($query_perangkat_pcb)); else: ?>
-                <option selected>NOT FOUND</option>
+                <option selected value="0">NOT FOUND</option>
             <?php endif ?>
         </select>
     </div>
@@ -70,7 +70,7 @@
     <label class="col-sm-12 col-md-2 col-form-label">Load Cell</label>
     <div class="col-sm-12 col-md-10">
         <select id="asik" name="LOADCELL" class="custom-select col-12">
-            <option selected>Choose...</option>
+            <option selected value="0">Choose...</option>
             <?php 
                 // GET ID perangkat FROM TBL perangkat WHERE perangkat = "LOADCELL"
                 $query_perangkat_loadcell = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE '%LOADCELL-$category_code%'");
@@ -80,7 +80,7 @@
             ?>
                 <option value="<?= $data_loadcell['id']; ?>" ><?= $data_loadcell['nama_perangkat'] . ", " . "Batch-" . $data_loadcell['no_batch'] . ", Kardus-" . $data_loadcell['no_kardus']; ?></option>
             <?php } while($data_loadcell = mysql_fetch_assoc($query_perangkat_loadcell)); else: ?>
-                <option selected>NOT FOUND</option>
+                <option selected value="0">NOT FOUND</option>
             <?php endif ?>
         </select>
     </div>

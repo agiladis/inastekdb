@@ -85,7 +85,7 @@
 								<label class="col-sm-12 col-md-2 col-form-label">LCD</label>
 								<div class="col-sm-12 col-md-10">
 									<select name="LCD" class="custom-select col-12">
-										<option selected>Choose...</option>
+										<option selected value="0">Choose...</option>
 										<?php 
 											// GET ID perangkat FROM TBL perangkat WHERE perangkat = "LCD"
 											$query_perangkat_lcd = mysql_query("SELECT * FROM perangkat WHERE nama_perangkat LIKE 'LCD%'");

@@ -1,10 +1,9 @@
 -- phpMyAdmin SQL Dump
-
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2023 at 10:01 AM
+-- Generation Time: Mar 31, 2023 at 05:04 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -31,9 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `batch_produksi` (
   `id` int(100) NOT NULL,
-
   `id_pemesan` int(11) NOT NULL,
-
   `kode_batch` int(100) NOT NULL,
   `tgl_mulai` varchar(100) NOT NULL,
   `tgl_akhir` varchar(100) NOT NULL
@@ -44,12 +41,10 @@ CREATE TABLE `batch_produksi` (
 --
 
 INSERT INTO `batch_produksi` (`id`, `id_pemesan`, `kode_batch`, `tgl_mulai`, `tgl_akhir`) VALUES
-(1, 1, 1, '01 March 2023', '04 March 2023'),
-(2, 0, 2, '0000-00-00', '0000-00-00'),
-(3, 1, 3, '0000-00-00', '0000-00-00'),
-(4, 3, 5, '23 March 2023', '0000-00-00'),
-(5, 3, 9, '23 March 2023', '24 March 2023'),
-(6, 3, 10, '09 March 2023', '23 March 2023');
+(8, 1, 1, '06 March 2023', '11 March 2023'),
+(9, 3, 2, '06 March 2023', '18 March 2023'),
+(10, 1, 3, '19 March 2023', '21 March 2023'),
+(13, 5, 1, '10 March 2023', '11 March 2023');
 
 -- --------------------------------------------------------
 
@@ -140,7 +135,19 @@ INSERT INTO `log` (`id`, `date`, `note`) VALUES
 (51, '23-03-2023 04:54:00', 'Login berhasil aushaf (root)'),
 (52, '23-03-2023 04:55:05', 'Login berhasil aushaf (root)'),
 (53, '23-03-2023 05:46:02', 'Percobaan login salah dengan user : '),
-(54, '23-03-2023 05:46:08', 'Percobaan login salah dengan user : ');
+(54, '23-03-2023 05:46:08', 'Percobaan login salah dengan user : '),
+(55, '27-03-2023 02:46:44', 'Login berhasil aushaf (root)'),
+(56, '27-03-2023 05:22:48', 'User aushaf menambahkan item incoming hardware'),
+(57, '27-03-2023 05:25:41', 'User aushaf menambahkan item incoming hardware'),
+(58, '28-03-2023 03:07:57', 'Percobaan login salah dengan user : agil'),
+(59, '28-03-2023 03:08:04', 'Login berhasil aushaf (root)'),
+(60, '29-03-2023 05:25:51', 'Login berhasil aushaf (root)'),
+(61, '30-03-2023 09:09:01', 'User aushaf menambahkan item incoming hardware'),
+(62, '30-03-2023 09:12:03', 'User aushaf menambahkan item incoming hardware'),
+(63, '30-03-2023 09:20:58', 'Login berhasil aushaf (root)'),
+(64, '31-03-2023 03:28:20', 'Login berhasil aushaf (root)'),
+(65, '31-03-2023 03:30:13', 'User aushaf menambahkan item incoming hardware'),
+(66, '31-03-2023 09:43:56', 'User aushaf menambahkan item incoming hardware');
 
 -- --------------------------------------------------------
 
@@ -160,8 +167,8 @@ CREATE TABLE `pemesan` (
 
 INSERT INTO `pemesan` (`id`, `kode`, `ket`) VALUES
 (1, 'OH', 'Organisasi Halal'),
-(3, 'WD', 'White Dynamic');
-
+(3, 'WD', 'White Dynamic'),
+(5, 'CHC', 'Cahaya Hidup Cuaca');
 
 -- --------------------------------------------------------
 
@@ -185,7 +192,13 @@ CREATE TABLE `perangkat` (
 INSERT INTO `perangkat` (`id`, `nama_perangkat`, `unit_barang`, `tgl_datang`, `no_batch`, `no_kardus`) VALUES
 (1, 'LCD', '100', '1 March 2023', '4', '100'),
 (2, 'PCB', '100', '23 March 2023', '9', '001'),
-(3, 'LOADCELL', '100', '23 March 2023', '10', '002');
+(3, 'LOADCELL', '100', '23 March 2023', '10', '002'),
+(4, 'PCB-BBWS ', '31', '17 March 2023', '12', '13'),
+(5, 'Loadcell-BBWS', '99', '23 March 2023', '12', '12'),
+(6, 'Loadcell-BBWS', '14', '16 March 2023', '001', '001'),
+(7, 'Loadcell-TDWS', '113', '02 March 2023', '113', '113'),
+(8, 'PCB-BBWS ', '13', '09 March 2023', '190', '190'),
+(9, 'Loadcell-TDWS', '123', '31 March 2023 ', '123', '123');
 
 -- --------------------------------------------------------
 
@@ -195,11 +208,25 @@ INSERT INTO `perangkat` (`id`, `nama_perangkat`, `unit_barang`, `tgl_datang`, `n
 
 CREATE TABLE `serial_number` (
   `id` int(100) NOT NULL,
+  `id_batch` int(11) NOT NULL,
+  `id_kategori` int(11) NOT NULL,
   `serial_number` varchar(200) NOT NULL,
   `LCD` varchar(100) NOT NULL,
   `PCB` varchar(100) NOT NULL,
   `LOADCELL` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `serial_number`
+--
+
+INSERT INTO `serial_number` (`id`, `id_batch`, `id_kategori`, `serial_number`, `LCD`, `PCB`, `LOADCELL`) VALUES
+(21, 1, 1, '-BBWS--0001', '1', '2', '3'),
+(22, 9, 1, 'WD-BBWS-2-0001', '1', '2', '5'),
+(23, 9, 1, 'WD-BBWS-2-0002', '1', '4', '3'),
+(24, 9, 1, 'WD-BBWS-2-0003', '1', '2', '3'),
+(25, 9, 1, 'WD-BBWS-2-0004', '1', '8', '5'),
+(26, 9, 1, 'WD-BBWS-2-0005', 'Choose...', '4', '6');
 
 -- --------------------------------------------------------
 
@@ -224,7 +251,7 @@ CREATE TABLE `userlist` (
 INSERT INTO `userlist` (`idid`, `user`, `nama`, `password`, `level`, `ugroup`, `lastlogin`) VALUES
 (4, 'aushaffahri', 'Aushaf Fakhri', '2d14ab97cc3dc294c51c0d6814f4ea45f4b4e312', 'root', 'Engineer', '23-03-2023 04:23:08'),
 (5, 'cencendi', 'Cendikia I', 'c2030c5f7059c1e3cfb8331d7960e9d01947acfc', 'root', 'Engineer', NULL),
-(6, 'aushaf', 'aushaf', '2d14ab97cc3dc294c51c0d6814f4ea45f4b4e312', 'root', 'Engineer', '23-03-2023 04:55:05');
+(6, 'aushaf', 'aushaf', '2d14ab97cc3dc294c51c0d6814f4ea45f4b4e312', 'root', 'Engineer', '31-03-2023 03:28:20');
 
 --
 -- Indexes for dumped tables
@@ -260,7 +287,6 @@ ALTER TABLE `pemesan`
 ALTER TABLE `perangkat`
   ADD PRIMARY KEY (`id`);
 
-
 --
 -- Indexes for table `serial_number`
 --
@@ -281,49 +307,43 @@ ALTER TABLE `userlist`
 -- AUTO_INCREMENT for table `batch_produksi`
 --
 ALTER TABLE `batch_produksi`
-
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `kategori_produk`
 --
 ALTER TABLE `kategori_produk`
-
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `pemesan`
 --
 ALTER TABLE `pemesan`
-
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `perangkat`
 --
 ALTER TABLE `perangkat`
-
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `serial_number`
 --
 ALTER TABLE `serial_number`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `userlist`
 --
 ALTER TABLE `userlist`
   MODIFY `idid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
